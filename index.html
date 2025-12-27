@@ -86,8 +86,11 @@
 
             <!-- Card 2: Cart -->
             <a href="pages/cart.html" class="nav-card fade-in-up" style="animation-delay: 0.1s">
-                <div class="nav-icon">
-                    <span class="material-symbols-outlined">shopping_cart</span>
+                <div class="cart-btn-wrapper" style="position: relative;">
+                    <div class="nav-icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <span class="cart-badge hidden" id="cartBadge">0</span>
                 </div>
                 <h3 class="nav-card-title">Giỏ hàng</h3>
                 <p class="nav-card-desc">
@@ -131,6 +134,44 @@
             <p class="footer-copyright">© 2024 PHUONG 2HAND. Đã đăng ký bản quyền.</p>
         </div>
     </footer>
+
+    <script>
+        // Update cart badge with item count from localStorage
+        function updateCartBadge() {
+            const cartBadge = document.getElementById('cartBadge');
+            if (!cartBadge) return;
+
+            // Get cart data from localStorage
+            let cart = [];
+            try {
+                cart = JSON.parse(localStorage.getItem('cart')) || [];
+            } catch (e) {
+                cart = [];
+            }
+
+            // Calculate total items
+            let totalItems = 0;
+            if (Array.isArray(cart)) {
+                totalItems = cart.reduce((sum, item) => {
+                    return sum + (parseInt(item.quantity) || 1);
+                }, 0);
+            }
+
+            // Update badge
+            if (totalItems > 0) {
+                cartBadge.textContent = totalItems;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+        }
+
+        // Run on page load
+        updateCartBadge();
+
+        // Update when storage changes (if items added from another tab)
+        window.addEventListener('storage', updateCartBadge);
+    </script>
 </body>
 
 </html>
