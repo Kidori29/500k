@@ -177,7 +177,7 @@ function initLoginForm() {
             // Redirect after delay
             setTimeout(() => {
                 window.location.href = '../index.html';
-            }, 1500);
+            }, 150);
         } else {
             // Error animation
             showMessage('Tên đăng nhập hoặc mật khẩu không đúng!', 'error');
