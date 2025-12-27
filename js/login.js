@@ -201,7 +201,7 @@ function initLoginForm() {
             loginForm.style.animation = 'shake 0.5s';
             setTimeout(() => {
                 loginForm.style.animation = '';
-            }, 500);
+            }, 50);
         }
     });
 
@@ -292,7 +292,7 @@ function showMessage(message, type) {
     // Remove after animation
     setTimeout(() => {
         messageDiv.remove();
-    }, 300);
+    }, 3000);
 }
 
 // ==========================================
