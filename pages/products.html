@@ -210,11 +210,64 @@
             }
         }
 
+        // Add to cart function
+        function addToCart(productName, productPrice, productImage) {
+            // Get current cart
+            let cart = [];
+            try {
+                cart = JSON.parse(localStorage.getItem('cart')) || [];
+            } catch (e) {
+                cart = [];
+            }
+
+            // Check if product already exists
+            const existingProductIndex = cart.findIndex(item => item.name === productName);
+
+            if (existingProductIndex !== -1) {
+                // Increase quantity
+                cart[existingProductIndex].quantity = (parseInt(cart[existingProductIndex].quantity) || 1) + 1;
+            } else {
+                // Add new product
+                cart.push({
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1
+                });
+            }
+
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update badge
+            updateCartBadge();
+        }
+
         // Run on page load
         updateCartBadge();
 
         // Update when storage changes (if items added from another tab)
         window.addEventListener('storage', updateCartBadge);
+
+        // Add event listeners to all "Add to cart" buttons
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToCartButtons = document.querySelectorAll('.btn-primary');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    // Get product info from parent card
+                    const productCard = this.closest('.product-card');
+                    if (!productCard) return;
+
+                    const productName = productCard.querySelector('.product-name')?.textContent || 'Sản phẩm';
+                    const productPrice = productCard.querySelector('.product-price')?.textContent || '0đ';
+                    const productImage = productCard.querySelector('.product-image')?.src || '';
+
+                    // Add to cart
+                    addToCart(productName, productPrice, productImage);
+                });
+            });
+        });
     </script>
 </body>
 
