@@ -7,45 +7,43 @@
     <meta name="description" content="Đăng nhập Phuong 2Hand">
     <title>Đăng nhập - Phuong 2Hand</title>
 
-    <!-- Google Fonts (Phông chữ) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Material Icons (Biểu tượng) -->
+    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet">
 
-    <!-- CSS Files (Tệp kiểu) -->
+    <!-- CSS Files -->
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/pages/login.css">
 </head>
 
-<script src="../js/login.js"></script>
-
 <body>
     <div class="login-container">
-        <!-- Trang trí nền -->
+        <!-- Background Decorations -->
         <div class="bg-decoration bg-decoration-1"></div>
         <div class="bg-decoration bg-decoration-2"></div>
 
-        <!-- Bên trái: Form đăng nhập -->
+        <!-- Left Side: Login Form -->
         <div class="login-form-side fade-in-up">
-            <!-- Logo đầu trang -->
+            <!-- Header Logo -->
             <div class="login-header">
-                <div class="logo-icon">
-                    <img src="../images/logo.jpg" class="logo-image">
+                <div class="login-logo-icon">
+                    <span class="material-symbols-outlined">checkroom</span>
                 </div>
                 <div class="login-logo-text">
                     PHUONG<span>.2HAND</span>
                 </div>
             </div>
 
-            <!-- Nội dung đăng nhập -->
+            <!-- Login Content -->
             <div class="login-content">
                 <div class="login-title-section">
                     <h1 class="login-title">
@@ -55,7 +53,7 @@
                 </div>
 
                 <form class="login-form">
-                    <!-- Nhập Email -->
+                    <!-- Email Input -->
                     <div class="form-group">
                         <label class="form-label" for="email">Địa chỉ Email</label>
                         <div class="input-wrapper">
@@ -65,7 +63,7 @@
                         </div>
                     </div>
 
-                    <!-- Nhập Mật khẩu -->
+                    <!-- Password Input -->
                     <div class="form-group">
                         <div class="password-controls">
                             <label class="form-label" for="password">Mật khẩu</label>
@@ -81,7 +79,7 @@
                         </div>
                     </div>
 
-                    <!-- Nút đăng nhập -->
+                    <!-- Login Button -->
                     <button type="submit" class="btn btn-primary btn-lg" style="margin-top: var(--spacing-md);">
                         Đăng nhập ngay
                         <span class="material-symbols-outlined">arrow_forward</span>
@@ -89,9 +87,9 @@
                 </form>
             </div>
 
-            <!-- Chân trang -->
+            <!-- Footer -->
             <div class="login-footer">
-                <span class="footer-text">© 2024 PHUONG 2HAND</span>
+                <span class="footer-text">© 2025 PHUONG 2HAND</span>
                 <div class="footer-links">
                     <a href="../index.html" class="footer-link">Trang chủ</a>
                     <a href="#" class="footer-link">Bảo mật</a>
@@ -100,7 +98,7 @@
             </div>
         </div>
 
-        <!-- Bên phải: Ảnh Banner -->
+        <!-- Right Side: Banner Image -->
         <div class="login-banner-side">
             <div class="banner-image"></div>
 
@@ -122,10 +120,13 @@
                 </div>
             </div>
 
-            <!-- Trang trí nổi -->
-
+            <!-- Floating Decorations -->
+            <div class="floating-decoration floating-decoration-1"></div>
+            <div class="floating-decoration floating-decoration-2"></div>
         </div>
     </div>
+
+    <script src="../js/login.js"></script>
 </body>
 
 </html>
