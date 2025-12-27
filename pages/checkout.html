@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán - Phuong 2Hand</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages/checkout.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">checkroom</span>
+                </div>
+                PHUONG<span style="color: var(--color-vintage-brown);">.2HAND</span>
+            </a>
+            <div>
+                <a href="cart.html" class="btn btn-secondary">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    Về giỏ hàng
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="checkout-container">
+        <h1 class="checkout-title">Thanh Toán 💳</h1>
+
+        <div class="checkout-grid">
+            <!-- Checkout Form -->
+            <div class="checkout-form">
+                <!-- Contact Information -->
+                <div class="section-card fade-in-up">
+                    <h2 class="section-title">
+                        <span class="section-number">1</span>
+                        Thông tin liên hệ
+                    </h2>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email *</label>
+                        <input type="email" id="email" class="form-input" placeholder="email@vi-du.com" required>
+                    </div>
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="section-card fade-in-up" style="animation-delay: 0.1s">
+                    <h2 class="section-title">
+                        <span class="section-number">2</span>
+                        Thông tin giao hàng
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="fullname">Họ và tên *</label>
+                            <input type="text" id="fullname" class="form-input" placeholder="Nguyễn Văn A" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Số điện thoại *</label>
+                            <input type="tel" id="phone" class="form-input" placeholder="0912345678" required>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label class="form-label" for="address">Địa chỉ chi tiết *</label>
+                            <input type="text" id="address" class="form-input" placeholder="Số nhà, tên đường..."
+                                required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="city">Tỉnh / Thành phố *</label>
+                                <select id="city" class="form-select" required>
+                                    <option value="">Chọn Tỉnh / Thành phố</option>
+                                    <option value="hanoi">Hà Nội</option>
+                                    <option value="hcm">TP. Hồ Chí Minh</option>
+                                    <option value="danang">Đà Nẵng</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="district">Quận / Huyện *</label>
+                                <select id="district" class="form-select" required>
+                                    <option value="">Chọn Quận / Huyện</option>
+                                    <option value="1">Quận 1</option>
+                                    <option value="2">Quận 2</option>
+                                    <option value="3">Quận 3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label class="form-label" for="note">Ghi chú đơn hàng (tùy chọn)</label>
+                            <textarea id="note" class="form-input form-textarea"
+                                placeholder="Ví dụ: Gọi trước khi giao..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="section-card fade-in-up" style="animation-delay: 0.2s">
+                    <h2 class="section-title">
+                        <span class="section-number">3</span>
+                        Phương thức thanh toán
+                    </h2>
+                    <div class="payment-methods">
+                        <div class="payment-option">
+                            <input type="radio" id="cod" name="payment" value="cod" checked>
+                            <label for="cod" class="payment-label">
+                                <div class="payment-icon">
+                                    <span class="material-symbols-outlined">local_shipping</span>
+                                </div>
+                                <div class="payment-info">
+                                    <div class="payment-name">Thanh toán khi nhận hàng (COD)</div>
+                                    <div class="payment-desc">Thanh toán bằng tiền mặt khi nhận hàng</div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input type="radio" id="bank" name="payment" value="bank">
+                            <label for="bank" class="payment-label">
+                                <div class="payment-icon">
+                                    <span class="material-symbols-outlined">account_balance</span>
+                                </div>
+                                <div class="payment-info">
+                                    <div class="payment-name">Chuyển khoản ngân hàng</div>
+                                    <div class="payment-desc">Chuyển khoản qua VietcomBank, MBBank, Vietinbank...</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <aside class="order-summary-sidebar">
+                <div class="section-card fade-in-up" style="animation-delay: 0.3s">
+                    <h2 class="summary-title">Đơn Hàng (3 sản phẩm)</h2>
+
+                    <div class="summary-items">
+                        <div class="summary-item">
+                            <img src="../images/product-1.jpg" alt="Product" class="summary-item-image">
+                            <div class="summary-item-info">
+                                <div class="summary-item-name">Áo Vintage Denim Jacket</div>
+                                <div class="summary-item-meta">Size: M • SL: 1</div>
+                                <div class="summary-item-price">250,000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-item">
+                            <img src="../images/product-2.jpg" alt="Product" class="summary-item-image">
+                            <div class="summary-item-info">
+                                <div class="summary-item-name">Váy Vintage Floral</div>
+                                <div class="summary-item-meta">Size: S • SL: 1</div>
+                                <div class="summary-item-price">180,000đ</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-item">
+                            <img src="../images/product-3.jpg" alt="Product" class="summary-item-image">
+                            <div class="summary-item-info">
+                                <div class="summary-item-name">Áo Thun Basic Tee</div>
+                                <div class="summary-item-meta">Size: L • SL: 1</div>
+                                <div class="summary-item-price">120,000đ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Tạm tính</span>
+                        <span>550,000đ</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Phí vận chuyển</span>
+                        <span style="color: var(--color-primary); font-weight: 600;">Miễn phí</span>
+                    </div>
+
+                    <div class="summary-row total">
+                        <span>Tổng cộng</span>
+                        <span>550,000đ</span>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg" style="width: 100%; margin-top: var(--spacing-lg);">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        Hoàn tất đơn hàng
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">Trang chủ</a>
+                <a href="products.html" class="footer-link">Sản phẩm</a>
+                <a href="#" class="footer-link">Chính sách</a>
+            </div>
+            <p class="footer-copyright">© 2024 PHUONG 2HAND</p>
+        </div>
+    </footer>
+</body>
+
+</html>

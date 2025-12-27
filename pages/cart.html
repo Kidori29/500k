@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Phuong 2Hand</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages/cart.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">checkroom</span>
+                </div>
+                PHUONG<span style="color: var(--color-vintage-brown);">.2HAND</span>
+            </a>
+            <div class="flex" style="gap: var(--spacing-md);">
+                <a href="products.html" class="btn btn-secondary">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    Tiếp tục mua sắm
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="cart-container">
+        <h1 class="cart-title">Giỏ Hàng Của Bạn 🛍️</h1>
+        <p class="cart-subtitle">3 sản phẩm trong giỏ hàng</p>
+
+        <div class="cart-grid">
+            <!-- Cart Items -->
+            <div class="cart-items">
+                <!-- Item 1 -->
+                <div class="cart-item fade-in-up">
+                    <img src="../images/product-1.jpg" alt="Áo Vintage Denim Jacket" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <h3 class="cart-item-name">Áo Vintage Denim Jacket</h3>
+                        <p class="cart-item-meta">Size: M • Màu: Xanh denim</p>
+                        <p class="cart-item-price">250,000đ</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="remove-btn" aria-label="Xóa sản phẩm">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                        <div class="quantity-control">
+                            <button class="quantity-btn">
+                                <span class="material-symbols-outlined">remove</span>
+                            </button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="cart-item fade-in-up" style="animation-delay: 0.1s">
+                    <img src="../images/product-2.jpg" alt="Váy Vintage Floral" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <h3 class="cart-item-name">Váy Vintage Floral</h3>
+                        <p class="cart-item-meta">Size: S • Họa tiết: Hoa nhí</p>
+                        <p class="cart-item-price">180,000đ</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="remove-btn" aria-label="Xóa sản phẩm">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                        <div class="quantity-control">
+                            <button class="quantity-btn">
+                                <span class="material-symbols-outlined">remove</span>
+                            </button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="cart-item fade-in-up" style="animation-delay: 0.2s">
+                    <img src="../images/product-3.jpg" alt="Áo Thun Basic Tee" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <h3 class="cart-item-name">Áo Thun Basic Tee</h3>
+                        <p class="cart-item-meta">Size: L • Màu: Trắng</p>
+                        <p class="cart-item-price">120,000đ</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="remove-btn" aria-label="Xóa sản phẩm">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                        <div class="quantity-control">
+                            <button class="quantity-btn">
+                                <span class="material-symbols-outlined">remove</span>
+                            </button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-btn">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <aside class="order-summary fade-in-up" style="animation-delay: 0.3s">
+                <h2 class="summary-title">Tóm Tắt Đơn Hàng</h2>
+
+                <div class="summary-row">
+                    <span>Tạm tính (3 sản phẩm)</span>
+                    <span>550,000đ</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Phí vận chuyển</span>
+                    <span style="color: var(--color-primary); font-weight: 600;">Miễn phí</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Tổng cộng</span>
+                    <span>550,000đ</span>
+                </div>
+
+                <a href="checkout.html" class="btn btn-primary btn-lg"
+                    style="width: 100%; margin-top: var(--spacing-lg);">
+                    <span class="material-symbols-outlined">shopping_cart_checkout</span>
+                    Thanh toán
+                </a>
+
+                <div
+                    style="text-align: center; margin-top: var(--spacing-md); padding: var(--spacing-md); background: rgba(240, 140, 160, 0.1); border-radius: var(--radius-md);">
+                    <p style="font-size: var(--font-size-sm); color: var(--color-vintage-light-brown);">
+                        🎁 Miễn phí vận chuyển cho đơn từ 200,000đ
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">Trang chủ</a>
+                <a href="products.html" class="footer-link">Sản phẩm</a>
+                <a href="#" class="footer-link">Chính sách</a>
+            </div>
+            <p class="footer-copyright">© 2024 PHUONG 2HAND</p>
+        </div>
+    </footer>
+</body>
+
+</html>
