@@ -29,7 +29,7 @@
     border: 1px solid #eee;
     /* Viền mỏng cho logo đỡ bị chìm */
     flex-shrink: 0;
-    /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
+    /* Giữ logo không bị méo khi màn hình nhỏ */
 }
 
 /* 4. Ảnh Logo */
