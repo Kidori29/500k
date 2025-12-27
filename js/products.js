@@ -98,15 +98,13 @@ function addToCart(productName, productPrice, productImage) {
     updateCartBadge();
 }
 
-// Run on page load
-updateHeaderAuth();
-updateCartBadge();
-
-// Update when storage changes (if items added from another tab)
-window.addEventListener('storage', updateCartBadge);
-
-// Add event listeners to all "Add to cart" buttons
+// Add event listeners and initialize on page load
 document.addEventListener('DOMContentLoaded', function () {
+    // Initialize header and cart badge
+    updateHeaderAuth();
+    updateCartBadge();
+
+    // Add event listeners to all "Add to cart" buttons
     const addToCartButtons = document.querySelectorAll('.btn-primary');
 
     addToCartButtons.forEach(button => {
@@ -124,3 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Update when storage changes (if items added from another tab)
+window.addEventListener('storage', updateCartBadge);

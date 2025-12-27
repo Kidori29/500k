@@ -2,6 +2,7 @@
 function loadCart() {
     const container = document.getElementById('cartItemsContainer');
     const summaryTotal = document.getElementById('summaryTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
 
     // Get cart from localStorage
     let cart = [];
@@ -28,8 +29,13 @@ function loadCart() {
             </div>
         `;
         summaryTotal.textContent = '0đ';
+        // Disable checkout button when cart is empty
+        checkoutBtn.disabled = true;
         return;
     }
+
+    // Enable checkout button when cart has items
+    checkoutBtn.disabled = false;
 
     // Calculate total price
     let totalPrice = 0;
@@ -105,4 +111,16 @@ function decreaseQuantity(index) {
 }
 
 // Load cart on page load
-document.addEventListener('DOMContentLoaded', loadCart);
+document.addEventListener('DOMContentLoaded', () => {
+    loadCart();
+
+    // Add click handler for checkout button
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            if (!checkoutBtn.disabled) {
+                window.location.href = 'checkout.html';
+            }
+        });
+    }
+});
