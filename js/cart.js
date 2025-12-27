@@ -30,24 +30,16 @@ function loadCart() {
         `;
         summaryTotal.textContent = '0đ';
         // Disable checkout button when cart is empty
-        checkoutBtn.disabled = true;
+        if (checkoutBtn) checkoutBtn.disabled = true;
         return;
     }
 
     // Enable checkout button when cart has items
-    checkoutBtn.disabled = false;
-
-    // Calculate total price
-    let totalPrice = 0;
+    if (checkoutBtn) checkoutBtn.disabled = false;
 
     // Render cart items
     cart.forEach((item, index) => {
         const quantity = parseInt(item.quantity) || 1;
-
-        // Parse price (remove 'đ' and commas)
-        const priceStr = item.price.replace(/[đ,]/g, '');
-        const price = parseInt(priceStr) || 0;
-        totalPrice += price * quantity;
 
         const cartItemHTML = `
             <div class="cart-item fade-in-up" style="animation-delay: ${index * 0.1}s" data-index="${index}">
@@ -64,7 +56,7 @@ function loadCart() {
                         <button class="quantity-btn" onclick="decreaseQuantity(${index})">
                             <span class="material-symbols-outlined">remove</span>
                         </button>
-                        <span class="quantity-value">${quantity}</span>
+                        <span class="quantity-value" id="qty-${index}">${quantity}</span>
                         <button class="quantity-btn" onclick="increaseQuantity(${index})">
                             <span class="material-symbols-outlined">add</span>
                         </button>
@@ -76,15 +68,85 @@ function loadCart() {
     });
 
     // Update total
-    summaryTotal.textContent = totalPrice.toLocaleString('vi-VN') + 'đ';
+    updateCartTotal();
+}
+
+// Update total price based on LocalStorage data
+function updateCartTotal() {
+    const summaryTotal = document.getElementById('summaryTotal');
+    let cart = [];
+    try {
+        cart = JSON.parse(localStorage.getItem('cart')) || [];
+    } catch (e) {
+        cart = [];
+    }
+
+    let totalPrice = 0;
+    cart.forEach(item => {
+        const quantity = parseInt(item.quantity) || 1;
+        // Parse price (remove 'đ' and commas)
+        const priceStr = item.price.replace(/[đ,.]/g, ''); // Handle both comma and dot just in case
+        const price = parseInt(priceStr) || 0;
+        totalPrice += price * quantity;
+    });
+
+    if (summaryTotal) {
+        summaryTotal.textContent = totalPrice.toLocaleString('vi-VN') + 'đ';
+    }
 }
 
 // Remove item from cart
 function removeItem(index) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Remove from array
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    loadCart();
+
+    // If empty, re-render to show empty state
+    if (cart.length === 0) {
+        loadCart();
+        return;
+    }
+
+    // Remove specific element from DOM without re-rendering everything
+    const container = document.getElementById('cartItemsContainer');
+    const items = container.querySelectorAll('.cart-item');
+
+    if (items[index]) {
+        items[index].remove();
+    }
+
+    // Re-index remaining items to ensure buttons work with correct index
+    const remainingItems = container.querySelectorAll('.cart-item');
+    remainingItems.forEach((item, newIndex) => {
+        // Update dataset
+        item.dataset.index = newIndex;
+
+        // Update quantity span ID
+        const qtySpan = item.querySelector('.quantity-value');
+        if (qtySpan) {
+            qtySpan.id = `qty-${newIndex}`;
+        }
+
+        // Update Remove Button
+        const removeBtn = item.querySelector('.remove-btn');
+        if (removeBtn) {
+            removeBtn.setAttribute('onclick', `removeItem(${newIndex})`);
+        }
+
+        // Update Quantity Buttons
+        const qtyBtns = item.querySelectorAll('.quantity-btn');
+        if (qtyBtns.length >= 2) {
+            // First button is decrease (minus)
+            qtyBtns[0].setAttribute('onclick', `decreaseQuantity(${newIndex})`);
+            // Second button is increase (plus)
+            qtyBtns[1].setAttribute('onclick', `increaseQuantity(${newIndex})`);
+        }
+    });
+
+    // Update total price
+    updateCartTotal();
 }
 
 // Increase quantity
@@ -92,7 +154,15 @@ function increaseQuantity(index) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart[index].quantity = (parseInt(cart[index].quantity) || 1) + 1;
     localStorage.setItem('cart', JSON.stringify(cart));
-    loadCart();
+
+    // Update UI directly without re-rendering everything
+    const qtyElement = document.getElementById(`qty-${index}`);
+    if (qtyElement) {
+        qtyElement.textContent = cart[index].quantity;
+    }
+
+    // Update total
+    updateCartTotal();
 }
 
 // Decrease quantity
@@ -103,7 +173,15 @@ function decreaseQuantity(index) {
     if (currentQty > 1) {
         cart[index].quantity = currentQty - 1;
         localStorage.setItem('cart', JSON.stringify(cart));
-        loadCart();
+
+        // Update UI directly without re-rendering everything
+        const qtyElement = document.getElementById(`qty-${index}`);
+        if (qtyElement) {
+            qtyElement.textContent = cart[index].quantity;
+        }
+
+        // Update total
+        updateCartTotal();
     } else {
         // If quantity is 1, remove item
         removeItem(index);
