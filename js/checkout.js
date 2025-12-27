@@ -32,7 +32,87 @@ function logout() {
     window.location.href = '../index.html';
 }
 
+// Load cart items for checkout
+function loadCheckoutCart() {
+    const container = document.getElementById('checkoutItemsContainer');
+    const subtotalElement = document.getElementById('checkoutSubtotal');
+    const totalElement = document.getElementById('checkoutTotal');
+    const summaryTitle = document.getElementById('checkoutSummaryTitle');
+
+    // Get cart from localStorage
+    let cart = [];
+    try {
+        cart = JSON.parse(localStorage.getItem('cart')) || [];
+    } catch (e) {
+        cart = [];
+    }
+
+    // Redirect if empty
+    if (cart.length === 0) {
+        // Option: Redirect to products or show message
+        // For now, let's just show empty state or redirect
+        // window.location.href = 'products.html'; // Uncomment to auto-redirect
+        if (summaryTitle) summaryTitle.textContent = 'Đơn Hàng (0 sản phẩm)';
+        if (container) container.innerHTML = '<p style="text-align:center; padding: 20px;">Giỏ hàng trống</p>';
+        return;
+    }
+
+    // Update summary title
+    let totalItems = 0;
+    cart.forEach(item => totalItems += (parseInt(item.quantity) || 1));
+    if (summaryTitle) summaryTitle.textContent = `Đơn Hàng (${totalItems} sản phẩm)`;
+
+    // Calculate total and render items
+    let totalPrice = 0;
+    if (container) container.innerHTML = '';
+
+    cart.forEach(item => {
+        const quantity = parseInt(item.quantity) || 1;
+        // Parse price
+        const priceStr = item.price.replace(/[đ,.]/g, '');
+        const price = parseInt(priceStr) || 0;
+        totalPrice += price * quantity;
+
+        const itemTotal = price * quantity;
+
+        const html = `
+            <div class="summary-item">
+                <img src="${item.image}" alt="${item.name}" class="summary-item-image" onerror="this.src='../images/product-1.jpg'">
+                <div class="summary-item-info">
+                    <div class="summary-item-name">${item.name}</div>
+                    <div class="summary-item-meta">SL: ${quantity}</div>
+                    <div class="summary-item-price">${item.price}</div>
+                </div>
+            </div>
+        `;
+        if (container) container.innerHTML += html;
+    });
+
+    // Update totals
+    const formattedTotal = totalPrice.toLocaleString('vi-VN') + 'đ';
+    if (subtotalElement) subtotalElement.textContent = formattedTotal;
+    if (totalElement) totalElement.textContent = formattedTotal;
+}
+
 // Run on page load
 document.addEventListener('DOMContentLoaded', function () {
     updateHeaderAuth();
+    loadCheckoutCart();
+
+    // Handle Order Completion
+    const completeOrderBtn = document.getElementById('completeOrderBtn');
+    if (completeOrderBtn) {
+        completeOrderBtn.addEventListener('click', function () {
+            // In a real app, we would validate the form here
+            // const form = document.querySelector('form');
+            // if (!form.checkValidity()) {
+            //     form.reportValidity();
+            //     return;
+            // }
+
+            alert('Đã đặt hàng thành công! Cảm ơn bạn đã mua sắm tại Phuong 2Hand.');
+            localStorage.removeItem('cart');
+            window.location.href = '../index.html';
+        });
+    }
 });
