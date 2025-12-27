@@ -25,6 +25,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ẩn nút hiện mật khẩu mặc định của trình duyệt để dùng custom icon */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+input[type="password"]::-webkit-password-reveal-button {
+    display: none;
+    -webkit-appearance: none;
+}
+
 /* ===== TYPOGRAPHY (PHÔNG CHỮ) ===== */
 h1,
 h2,

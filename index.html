@@ -124,43 +124,7 @@
     </footer>
 
     <script src="js/auth-header.js"></script>
-    <script>
-        // Cập nhật badge giỏ hàng với số lượng từ localStorage
-        function updateCartBadge() {
-            const cartBadge = document.getElementById('cartBadge');
-            if (!cartBadge) return;
 
-            // Lấy dữ liệu giỏ hàng từ localStorage
-            let cart = [];
-            try {
-                cart = JSON.parse(localStorage.getItem('cart')) || [];
-            } catch (e) {
-                cart = [];
-            }
-
-            // Tính tổng số lượng sản phẩm
-            let totalItems = 0;
-            if (Array.isArray(cart)) {
-                totalItems = cart.reduce((sum, item) => {
-                    return sum + (parseInt(item.quantity) || 1);
-                }, 0);
-            }
-
-            // Cập nhật badge
-            if (totalItems > 0) {
-                cartBadge.textContent = totalItems;
-                cartBadge.classList.remove('hidden');
-            } else {
-                cartBadge.classList.add('hidden');
-            }
-        }
-
-        // Chạy khi tải trang
-        updateCartBadge();
-
-        // Cập nhật khi storage thay đổi (nếu thêm sản phẩm từ tab khác)
-        window.addEventListener('storage', updateCartBadge);
-    </script>
 </body>
 
 </html>

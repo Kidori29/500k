@@ -161,6 +161,8 @@ function initLoginForm() {
 
     if (!loginForm) return;
 
+
+
     // Ẩn/hiện mật khẩu
     if (togglePasswordBtn) {
         togglePasswordBtn.addEventListener('click', () => {
@@ -321,7 +323,7 @@ function showMessage(message, type) {
 document.addEventListener('DOMContentLoaded', () => {
     // Khởi tạo banner carousel
     initBannerCarousel();
-    
+
     // Khởi tạo form đăng nhập
     initLoginForm();
 });

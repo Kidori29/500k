@@ -168,6 +168,8 @@
 
 .form-input-icon {
     padding-left: 56px;
+    padding-right: 48px;
+    /* Dành chỗ cho icon bên phải */
 }
 
 .toggle-password {

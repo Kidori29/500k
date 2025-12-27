@@ -78,8 +78,47 @@ function logout() {
     window.location.href = targetPath;
 }
 
+/**
+ * Cập nhật badge giỏ hàng với số lượng từ localStorage
+ * Hiển thị số lượng sản phẩm trong giỏ hàng trên badge
+ */
+function updateCartBadge() {
+    const cartBadge = document.getElementById('cartBadge');
+    if (!cartBadge) return;
+
+    // Lấy dữ liệu giỏ hàng từ localStorage
+    let cart = [];
+    try {
+        cart = JSON.parse(localStorage.getItem('cart')) || [];
+    } catch (e) {
+        cart = [];
+    }
+
+    // Tính tổng số lượng sản phẩm
+    let totalItems = 0;
+    if (Array.isArray(cart)) {
+        totalItems = cart.reduce((sum, item) => {
+            return sum + (parseInt(item.quantity) || 1);
+        }, 0);
+    }
+
+    // Cập nhật badge
+    if (totalItems > 0) {
+        cartBadge.textContent = totalItems;
+        cartBadge.classList.remove('hidden');
+    } else {
+        cartBadge.classList.add('hidden');
+    }
+}
+
 // ==========================================
 // KHỞI TẠO KHI TẢI TRANG
 // ==========================================
-// Tự động cập nhật header khi trang được tải
-document.addEventListener('DOMContentLoaded', updateHeaderAuth);
+// Tự động cập nhật header và badge khi trang được tải
+document.addEventListener('DOMContentLoaded', () => {
+    updateHeaderAuth();
+    updateCartBadge();
+});
+
+// Cập nhật badge khi storage thay đổi (nếu thêm sản phẩm từ tab khác)
+window.addEventListener('storage', updateCartBadge);

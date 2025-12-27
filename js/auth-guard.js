@@ -145,57 +145,6 @@
         }
     }
 
-
-    // Hàm logout
-    window.logout = function () {
-        if (confirm('Bạn có chắc muốn đăng xuất?')) {
-            sessionStorage.removeItem('isLoggedIn');
-            sessionStorage.removeItem('username');
-            sessionStorage.removeItem('redirectAfterLogin');
-
-            // Hiển thị thông báo
-            const message = document.createElement('div');
-            message.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 16px 24px;
-                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-                color: white;
-                border-radius: 12px;
-                font-weight: 600;
-                z-index: 999999;
-                animation: slideInRight 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            `;
-            message.textContent = 'Đã đăng xuất thành công! 👋';
-            document.body.appendChild(message);
-
-            setTimeout(() => {
-                window.location.href = '../index.html';
-            }, 1000);
-        }
-    };
-
-    // Kiểm tra và thêm animations cho message
-    if (!document.querySelector('#logout-animations')) {
-        const style = document.createElement('style');
-        style.id = 'logout-animations';
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(400px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
     // ==========================================
     // KHỞI TẠO KHI TẢI TRANG
     // ==========================================

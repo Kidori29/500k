@@ -6,45 +6,9 @@
 // - Quản lý header authentication
 // - Xử lý hoàn tất đơn hàng
 
-/**
- * Kiểm tra trạng thái đăng nhập và cập nhật header
- * Hiển thị tên người dùng và nút đăng xuất nếu đã đăng nhập
- */
-function updateHeaderAuth() {
-    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    const username = sessionStorage.getItem('username');
 
-    if (isLoggedIn === 'true' && username) {
-        // Lấy tên từ email (phần trước @)
-        const displayName = username.split('@')[0];
 
-        // Tìm phần auth trên header
-        const headerAuthSection = document.getElementById('headerAuthSection');
-        if (headerAuthSection) {
-            headerAuthSection.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 8px; margin-right: 24px; height: 48px;">
-                    <span class="material-symbols-outlined" style="font-size: 24px; color: var(--color-vintage-brown); display: flex;">person</span>
-                    <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--color-vintage-brown); padding-top: 2px;">${displayName}</span>
-                </div>
-                <button onclick="logout()" class="btn btn-secondary">
-                    <span class="material-symbols-outlined">logout</span>
-                    Đăng xuất
-                </button>
-            `;
-        }
-    }
-}
 
-/**
- * Hàm đăng xuất
- * Xóa thông tin đăng nhập và giỏ hàng, sau đó chuyển về trang chủ
- */
-function logout() {
-    sessionStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('username');
-    localStorage.removeItem('cart'); // Xóa giỏ hàng khi đăng xuất
-    window.location.href = '../index.html';
-}
 
 /**
  * Tải sản phẩm trong giỏ hàng để hiển thị trong trang thanh toán
@@ -114,7 +78,7 @@ function loadCheckoutCart() {
 // ==========================================
 document.addEventListener('DOMContentLoaded', function () {
     // Cập nhật header và tải giỏ hàng
-    updateHeaderAuth();
+    // Header authentication được xử lý bởi auth-header.js
     loadCheckoutCart();
 
     // Xử lý hoàn tất đơn hàng
@@ -165,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Hiển thị thông báo thành công
             alert('Đã đặt hàng thành công! Cảm ơn bạn đã mua sắm tại Phuong 2Hand.');
-            
+
             // Xóa giỏ hàng và chuyển về trang chủ
             localStorage.removeItem('cart');
             window.location.href = '../index.html';
