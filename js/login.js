@@ -1,3 +1,7 @@
+// ==========================================
+// LOGIN PAGE JAVASCRIPT
+// ==========================================
+
 // Banner carousel data
 const bannerSlides = [
     {
@@ -23,7 +27,7 @@ const bannerSlides = [
 // Valid login credentials
 const validCredentials = [
     { username: 'admin@admin.com', password: 'admin' },
-    { username: 'phuong123@gmail.com', password: '123' }
+    { username: 'phuong123', password: '123' }
 ];
 
 // State
@@ -74,7 +78,7 @@ function initBannerCarousel() {
             setTimeout(() => {
                 bannerCard.style.opacity = '1';
                 bannerCard.style.transform = 'translateY(0)';
-            }, 2);
+            }, 50);
         }, 300);
     }
 
@@ -168,16 +172,27 @@ function initLoginForm() {
 
         if (isValid) {
             // Success animation
-            showMessage('Đăng nhập thành công!');
+            showMessage('Đăng nhập thành công!', 'success');
             
             // Store login state
             sessionStorage.setItem('isLoggedIn', 'true');
             sessionStorage.setItem('username', username);
 
+            // Check if there's a redirect URL
+            const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+            
             // Redirect after delay
             setTimeout(() => {
-                window.location.href = '../index.html';
-            }, 150);
+                if (redirectUrl) {
+                    // Clear redirect URL
+                    sessionStorage.removeItem('redirectAfterLogin');
+                    // Redirect to the original page
+                    window.location.href = redirectUrl;
+                } else {
+                    // Default redirect to home
+                    window.location.href = '../index.html';
+                }
+            }, 1500);
         } else {
             // Error animation
             showMessage('Tên đăng nhập hoặc mật khẩu không đúng!', 'error');
@@ -288,8 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initBannerCarousel();
     initLoginForm();
     
-    console.log('🎨 Phuong 2Hand - Login page loaded');
-    console.log('📝 Valid credentials:');
+    console.log('Phuong 2Hand - Login page loaded');
+    console.log('Valid credentials:');
     console.log('   - admin / admin');
     console.log('   - phuong123 / 123');
 });
