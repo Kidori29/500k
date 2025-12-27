@@ -292,7 +292,7 @@ function showMessage(message, type) {
     // Remove after animation
     setTimeout(() => {
         messageDiv.remove();
-    }, 3000);
+    }, 300);
 }
 
 // ==========================================
