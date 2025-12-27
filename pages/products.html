@@ -33,7 +33,7 @@
                 </div>
                 PHUONG<span style="color: var(--color-vintage-brown);">.2HAND</span>
             </a>
-            <div class="flex" style="gap: var(--spacing-md);">
+            <div class="flex" style="gap: var(--spacing-md);" id="headerAuthSection">
                 <div class="cart-btn-wrapper">
                     <a href="cart.html" class="btn btn-secondary">
                         <span class="material-symbols-outlined">shopping_cart</span>
@@ -210,6 +210,43 @@
             }
         }
 
+        // Check login status and update header
+        function updateHeaderAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const username = sessionStorage.getItem('username');
+
+            if (isLoggedIn === 'true' && username) {
+                // Extract name from email (part before @)
+                const displayName = username.split('@')[0];
+
+                // Find the header auth section
+                const headerAuthSection = document.getElementById('headerAuthSection');
+                if (headerAuthSection) {
+                    // Preserve cart badge
+                    const cartBadgeHTML = headerAuthSection.querySelector('.cart-btn-wrapper').outerHTML;
+
+                    headerAuthSection.innerHTML = `
+                        <span style="font-family: var(--font-display); font-weight: 600; color: var(--color-vintage-brown);">
+                            <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 20px; margin-right: 4px;">person</span>
+                            ${displayName}
+                        </span>
+                        <button onclick="logout()" class="btn btn-secondary" style="padding: var(--spacing-xs) var(--spacing-md);">
+                            <span class="material-symbols-outlined">logout</span>
+                            Đăng xuất
+                        </button>
+                        ${cartBadgeHTML}
+                    `;
+                }
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('username');
+            window.location.href = '../index.html';
+        }
+
         // Add to cart function
         function addToCart(productName, productPrice, productImage) {
             // Get current cart
@@ -244,6 +281,7 @@
         }
 
         // Run on page load
+        updateHeaderAuth();
         updateCartBadge();
 
         // Update when storage changes (if items added from another tab)

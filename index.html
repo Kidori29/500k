@@ -136,6 +136,41 @@
     </footer>
 
     <script>
+        // Check login status and update header
+        function updateHeaderAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const username = sessionStorage.getItem('username');
+
+            if (isLoggedIn === 'true' && username) {
+                // Extract name from email (part before @)
+                const displayName = username.split('@')[0];
+
+                // Find the login button container
+                const headerContainer = document.querySelector('.header-container > div:last-child');
+                if (headerContainer) {
+                    headerContainer.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <span style="font-family: var(--font-display); font-weight: 600; color: var(--color-vintage-brown);">
+                                <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 20px; margin-right: 4px;">person</span>
+                                ${displayName}
+                            </span>
+                            <button onclick="logout()" class="btn btn-secondary" style="padding: var(--spacing-xs) var(--spacing-md);">
+                                <span class="material-symbols-outlined">logout</span>
+                                Đăng xuất
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('username');
+            location.reload();
+        }
+
         // Update cart badge with item count from localStorage
         function updateCartBadge() {
             const cartBadge = document.getElementById('cartBadge');
@@ -167,6 +202,7 @@
         }
 
         // Run on page load
+        updateHeaderAuth();
         updateCartBadge();
 
         // Update when storage changes (if items added from another tab)
