@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Phuong 2Hand - Khám phá bộ sưu tập đồ secondhand vintage được tuyển chọn kỹ lưỡng">
+    <title>Phuong 2Hand - Trang Chủ ✿</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages/landing.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">checkroom</span>
+                </div>
+                PHUONG<span style="color: var(--color-vintage-brown);">.2HAND</span>
+            </a>
+            <div id="headerAuthSection" style="display: flex; align-items: center;">
+                <a href="pages/login.html" class="btn btn-secondary">
+                    <span class="material-symbols-outlined">person</span>
+                    Đăng nhập
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in-up">
+            <div class="hero-logo">👗</div>
+            <h1 class="hero-title">
+                Chào mừng đến với<br>
+                <span class="highlight">Phuong 2Hand</span>
+            </h1>
+            <p class="hero-subtitle">
+                Khám phá bộ sưu tập đồ secondhand vintage được tuyển chọn kỹ lưỡng<br>
+                Mang đến hơi thở cổ điển nhưng đầy hiện đại cho tủ đồ của bạn ✿
+            </p>
+            <div class="hero-cta">
+                <a href="pages/products.html" class="btn btn-primary btn-lg">
+                    Khám phá ngay
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <a href="#navigation" class="btn btn-secondary btn-lg">
+                    Tìm hiểu thêm
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Cards Section -->
+    <section class="nav-section" id="navigation">
+        <h2 class="nav-title">Bắt đầu mua sắm 🎀</h2>
+        <div class="nav-grid">
+            <!-- Card 1: Products -->
+            <a href="pages/products.html" class="nav-card fade-in-up">
+                <div class="nav-icon">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </div>
+                <h3 class="nav-card-title">Sản phẩm</h3>
+                <p class="nav-card-desc">
+                    Khám phá hàng trăm items vintage độc đáo được tuyển chọn kỹ lưỡng
+                </p>
+            </a>
+
+            <!-- Card 2: Cart -->
+            <a href="pages/cart.html" class="nav-card fade-in-up" style="animation-delay: 0.1s">
+                <div class="cart-btn-wrapper" style="position: relative;">
+                    <div class="nav-icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <span class="cart-badge hidden" id="cartBadge">0</span>
+                </div>
+                <h3 class="nav-card-title">Giỏ hàng</h3>
+                <p class="nav-card-desc">
+                    Xem và quản lý các sản phẩm yêu thích trong giỏ hàng của bạn
+                </p>
+            </a>
+
+            <!-- Card 3: Checkout -->
+            <a href="pages/checkout.html" class="nav-card fade-in-up" style="animation-delay: 0.2s">
+                <div class="nav-icon">
+                    <span class="material-symbols-outlined">payments</span>
+                </div>
+                <h3 class="nav-card-title">Thanh toán</h3>
+                <p class="nav-card-desc">
+                    Thanh toán nhanh chóng, an toàn và nhận ưu đãi đặc biệt
+                </p>
+            </a>
+
+            <!-- Card 4: Account -->
+            <a href="pages/login.html" class="nav-card fade-in-up" style="animation-delay: 0.3s">
+                <div class="nav-icon">
+                    <span class="material-symbols-outlined">person</span>
+                </div>
+                <h3 class="nav-card-title">Tài khoản</h3>
+                <p class="nav-card-desc">
+                    Đăng nhập để theo dõi đơn hàng và nhận ưu đãi riêng
+                </p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Chính sách trả hàng</a>
+                <a href="#" class="footer-link">Vận chuyển</a>
+                <a href="#" class="footer-link">Bảo mật</a>
+                <a href="#" class="footer-link">Điều khoản</a>
+            </div>
+            <p class="footer-copyright">© 2025 PHUONG 2HAND. Đã đăng ký bản quyền.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update cart badge with item count from localStorage
+        function updateCartBadge() {
+            const cartBadge = document.getElementById('cartBadge');
+            if (!cartBadge) return;
+
+            // Get cart data from localStorage
+            let cart = [];
+            try {
+                cart = JSON.parse(localStorage.getItem('cart')) || [];
+            } catch (e) {
+                cart = [];
+            }
+
+            // Calculate total items
+            let totalItems = 0;
+            if (Array.isArray(cart)) {
+                totalItems = cart.reduce((sum, item) => {
+                    return sum + (parseInt(item.quantity) || 1);
+                }, 0);
+            }
+
+            // Update badge
+            if (totalItems > 0) {
+                cartBadge.textContent = totalItems;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+        }
+
+        // Run on page load
+        updateCartBadge();
+
+        // Update when storage changes (if items added from another tab)
+        window.addEventListener('storage', updateCartBadge);
+    </script>
+
+    <script src="js/auth-header.js"></script>
+</body>
+
+</html>

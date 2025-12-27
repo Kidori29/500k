@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Đăng nhập Phuong 2Hand">
+    <title>Đăng nhập - Phuong 2Hand</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages/login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Background Decorations -->
+        <div class="bg-decoration bg-decoration-1"></div>
+        <div class="bg-decoration bg-decoration-2"></div>
+
+        <!-- Left Side: Login Form -->
+        <div class="login-form-side fade-in-up">
+            <!-- Header Logo -->
+            <div class="login-header">
+                <div class="login-logo-icon">
+                    <span class="material-symbols-outlined">checkroom</span>
+                </div>
+                <div class="login-logo-text">
+                    PHUONG<span>.2HAND</span>
+                </div>
+            </div>
+
+            <!-- Login Content -->
+            <div class="login-content">
+                <div class="login-title-section">
+                    <h1 class="login-title">
+                        Chào mừng! <span style="font-size: 0.85em;">✨</span>
+                    </h1>
+                    <p class="login-subtitle">Bạn đã sẵn sàng săn lùng những báu vật vintage chưa?</p>
+                </div>
+
+                <form class="login-form">
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label class="form-label" for="email">Địa chỉ Email</label>
+                        <div class="input-wrapper">
+                            <span class="material-symbols-outlined input-icon">mail</span>
+                            <input type="email" id="email" class="form-input form-input-icon"
+                                placeholder="email@vi-du.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <div class="password-controls">
+                            <label class="form-label" for="password">Mật khẩu</label>
+                            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                        </div>
+                        <div class="input-wrapper">
+                            <span class="material-symbols-outlined input-icon">lock</span>
+                            <input type="password" id="password" class="form-input form-input-icon"
+                                placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn btn-primary btn-lg" style="margin-top: var(--spacing-md);">
+                        Đăng nhập ngay
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="divider">
+                        <div class="divider-line"></div>
+                        <span class="divider-text">Hoặc</span>
+                        <div class="divider-line"></div>
+                    </div>
+
+                    <!-- Create Account Button -->
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='../index.html'">
+                        <span class="material-symbols-outlined">person_add</span>
+                        Tạo tài khoản mới
+                    </button>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <span class="footer-text">© 2025 PHUONG 2HAND</span>
+                <div class="footer-links">
+                    <a href="../index.html" class="footer-link">Trang chủ</a>
+                    <a href="#" class="footer-link">Bảo mật</a>
+                    <a href="#" class="footer-link">Điều khoản</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Banner Image -->
+        <div class="login-banner-side">
+            <div class="banner-image"></div>
+
+            <div class="banner-content">
+                <div class="banner-card scale-in" style="animation-delay: 0.8s">
+                    <div class="banner-icon">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                    </div>
+                    <h3 class="banner-title">Khám phá phong cách của riêng bạn</h3>
+                    <p class="banner-text">
+                        Bộ sưu tập đồ Secondhand được tuyển chọn kỹ lưỡng, mang đến hơi thở cổ điển nhưng đầy hiện đại
+                        cho tủ đồ của bạn.
+                    </p>
+                    <div class="banner-dots">
+                        <div class="dot active"></div>
+                        <div class="dot inactive"></div>
+                        <div class="dot inactive"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Decorations -->
+            <div class="floating-decoration floating-decoration-1"></div>
+            <div class="floating-decoration floating-decoration-2"></div>
+        </div>
+    </div>
+
+    <script src="../js/login.js"></script>
+</body>
+
+</html>

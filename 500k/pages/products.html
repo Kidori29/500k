@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - Phuong 2Hand</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages/products.css">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="../images/logo.jpg" class="logo-image">
+                </div>
+                PHUONG<span style="color: var(--color-vintage-brown);">.2HAND</span>
+            </a>
+            <div class="flex" style="gap: var(--spacing-md);" id="headerAuthSection">
+                <div class="cart-btn-wrapper">
+                    <a href="cart.html" class="btn btn-secondary">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        Giỏ hàng
+                    </a>
+                    <span class="cart-badge hidden" id="cartBadge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Grid -->
+    <main class="products-container">
+        <h1
+            style="text-align: center; font-family: var(--font-display); font-size: var(--font-size-4xl); color: var(--color-vintage-brown); margin-bottom: var(--spacing-3xl);">
+            Bộ Sưu Tập Vintage
+        </h1>
+
+        <div class="products-grid">
+            <!-- Sản phẩm 1 -->
+            <div class="product-card fade-in-up">
+                <img src="../images/product-1.jpg" alt="Áo Vintage Denim Jacket" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Áo Vintage Denim Jacket</h3>
+                    <p class="product-price">250,000đ</p>
+                    <p class="product-desc">
+                        Áo khoác denim vintage kiểu dáng oversize, màu xanh nhạt.
+                        Chất liệu cotton dày dặn, phù hợp mùa thu đông.
+                    </p>
+                    <div class="product-meta">
+                        <span class="meta-tag">Size M</span>
+                        <span class="meta-tag">Như mới</span>
+                        <span class="meta-tag">Unisex</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">
+                        <span class="material-symbols-outlined">add_shopping_cart</span>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sản phẩm 2 -->
+            <div class="product-card fade-in-up" style="animation-delay: 0.1s">
+                <img src="../images/product-2.jpg" alt="Váy Vintage Floral" class="product-image">
+
+                <div class="product-info">
+                    <h3 class="product-name">Váy Vintage Floral</h3>
+                    <p class="product-price">180,000đ</p>
+                    <p class="product-desc">
+                        Váy hoa vintage dáng suông, họa tiết hoa nhí pastel.
+                        Chất vải mềm mại, thoáng mát cho mùa hè.
+                    </p>
+                    <div class="product-meta">
+                        <span class="meta-tag">Size S</span>
+                        <span class="meta-tag">Rất tốt</span>
+                        <span class="meta-tag">Summer</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">
+                        <span class="material-symbols-outlined">add_shopping_cart</span>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sản phẩm 3 -->
+            <div class="product-card fade-in-up" style="animation-delay: 0.2s">
+                <img src="../images/product-3.jpg" alt="Áo Thun Basic Tee" class="product-image">
+
+                <div class="product-info">
+                    <h3 class="product-name">Áo Thun Basic Tee</h3>
+                    <p class="product-price">120,000đ</p>
+                    <p class="product-desc">
+                        Áo thun cotton basic trơn màu trắng, form rộng thoải mái.
+                        Phù hợp mix&match nhiều style.
+                    </p>
+                    <div class="product-meta">
+                        <span class="meta-tag">Size L</span>
+                        <span class="meta-tag">Mới 100%</span>
+                        <span class="meta-tag">Basic</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">
+                        <span class="material-symbols-outlined">add_shopping_cart</span>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- 
+                ============================================
+                TEMPLATE - Mẫu để thêm sản phẩm mới
+                Copy từ đây đến hết thẻ </div> để thêm sản phẩm
+                ============================================
+            -->
+            <!--
+            <div class="product-card fade-in-up" style="animation-delay: 0.3s">
+                <img src="../images/product-X.jpg" alt="Tên sản phẩm" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">Tên Sản Phẩm</h3>
+                    <p class="product-price">XXX,000đ</p>
+                    <p class="product-desc">
+                        Mô tả sản phẩm ở đây...
+                    </p>
+                    <div class="product-meta">
+                        <span class="meta-tag">Size X</span>
+                        <span class="meta-tag">Tình trạng</span>
+                        <span class="meta-tag">Tag khác</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;">
+                        <span class="material-symbols-outlined">add_shopping_cart</span>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+            -->
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">Trang chủ</a>
+                <a href="#" class="footer-link">Chính sách</a>
+                <a href="#" class="footer-link">Vận chuyển</a>
+            </div>
+            <p class="footer-copyright">© 2025 PHUONG 2HAND</p>
+        </div>
+    </footer>
+
+    <script src="../js/products.js"></script>
+</body>
+
+</html>
