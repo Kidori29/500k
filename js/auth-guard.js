@@ -145,73 +145,9 @@
         }
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    /**
-     * Thêm thông tin user vào header nếu đã đăng nhập
-     * Hiển thị tên người dùng và nút đăng xuất trên header
-     */
-    function addUserInfo() {
-        const username = sessionStorage.getItem('username');
-        if (!username) return;
-
-        const header = document.querySelector('.header-container');
-        if (!header) return;
-
-        // Tìm div chứa nút
-        const buttonsDiv = header.querySelector('.flex, div:last-child');
-        if (!buttonsDiv) return;
-
-        // Tạo user info
-        const userInfo = document.createElement('div');
-        userInfo.style.cssText = `
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 16px;
-            background: rgba(240, 140, 160, 0.1);
-            border-radius: 12px;
-            border: 2px solid rgba(240, 140, 160, 0.2);
-        `;
-
-        userInfo.innerHTML = `
-            <span class="material-symbols-outlined" style="color: #F08CA0;">account_circle</span>
-            <span style="color: #5D4037; font-weight: 600;">${username}</span>
-            <button onclick="logout()" style="
-                background: none;
-                border: none;
-                color: #F08CA0;
-                cursor: pointer;
-                padding: 4px 8px;
-                border-radius: 6px;
-                transition: background 0.2s;
-                display: flex;
-                align-items: center;
-            " onmouseover="this.style.background='rgba(240, 140, 160, 0.1)'" 
-               onmouseout="this.style.background='none'">
-                <span class="material-symbols-outlined" style="font-size: 20px;">logout</span>
-            </button>
-        `;
-
-        // Thêm vào trước các nút khác
-        buttonsDiv.insertBefore(userInfo, buttonsDiv.firstChild);
-    }
-
-    /**
-     * Hàm đăng xuất toàn cục
-     * Xóa thông tin đăng nhập và chuyển về trang chủ
-     */
-    window.logout = function() {
-=======
 
     // Hàm logout
     window.logout = function () {
->>>>>>> Stashed changes
-=======
-
-    // Hàm logout
-    window.logout = function () {
->>>>>>> Stashed changes
         if (confirm('Bạn có chắc muốn đăng xuất?')) {
             sessionStorage.removeItem('isLoggedIn');
             sessionStorage.removeItem('username');
@@ -269,19 +205,7 @@
             checkAuth();
         });
     } else {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        // DOM đã load sẵn, chạy ngay
-        const isAuthenticated = checkAuth();
-        if (isAuthenticated) {
-            addUserInfo();
-        }
-=======
         checkAuth();
->>>>>>> Stashed changes
-=======
-        checkAuth();
->>>>>>> Stashed changes
     }
 
 })();
