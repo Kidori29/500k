@@ -178,6 +178,16 @@
     font-weight: 500;
 }
 
+/* Cart badge in nav cards */
+.nav-card .cart-btn-wrapper {
+    display: inline-block;
+}
+
+.nav-card .cart-badge {
+    top: -4px;
+    right: -4px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .hero {

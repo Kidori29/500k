@@ -44,92 +44,16 @@
     <!-- Main Content -->
     <main class="cart-container">
         <h1 class="cart-title">Giỏ Hàng Của Bạn 🛍️</h1>
-        <p class="cart-subtitle">3 sản phẩm trong giỏ hàng</p>
 
         <div class="cart-grid">
             <!-- Cart Items -->
-            <div class="cart-items">
-                <!-- Item 1 -->
-                <div class="cart-item fade-in-up">
-                    <img src="../images/product-1.jpg" alt="Áo Vintage Denim Jacket" class="cart-item-image">
-                    <div class="cart-item-info">
-                        <h3 class="cart-item-name">Áo Vintage Denim Jacket</h3>
-                        <p class="cart-item-meta">Size: M • Màu: Xanh denim</p>
-                        <p class="cart-item-price">250,000đ</p>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="remove-btn" aria-label="Xóa sản phẩm">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                        <div class="quantity-control">
-                            <button class="quantity-btn">
-                                <span class="material-symbols-outlined">remove</span>
-                            </button>
-                            <span class="quantity-value">1</span>
-                            <button class="quantity-btn">
-                                <span class="material-symbols-outlined">add</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="cart-item fade-in-up" style="animation-delay: 0.1s">
-                    <img src="../images/product-2.jpg" alt="Váy Vintage Floral" class="cart-item-image">
-                    <div class="cart-item-info">
-                        <h3 class="cart-item-name">Váy Vintage Floral</h3>
-                        <p class="cart-item-meta">Size: S • Họa tiết: Hoa nhí</p>
-                        <p class="cart-item-price">180,000đ</p>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="remove-btn" aria-label="Xóa sản phẩm">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                        <div class="quantity-control">
-                            <button class="quantity-btn">
-                                <span class="material-symbols-outlined">remove</span>
-                            </button>
-                            <span class="quantity-value">1</span>
-                            <button class="quantity-btn">
-                                <span class="material-symbols-outlined">add</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="cart-item fade-in-up" style="animation-delay: 0.2s">
-                    <img src="../images/product-3.jpg" alt="Áo Thun Basic Tee" class="cart-item-image">
-                    <div class="cart-item-info">
-                        <h3 class="cart-item-name">Áo Thun Basic Tee</h3>
-                        <p class="cart-item-meta">Size: L • Màu: Trắng</p>
-                        <p class="cart-item-price">120,000đ</p>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="remove-btn" aria-label="Xóa sản phẩm">
-                            <span class="material-symbols-outlined">delete</span>
-                        </button>
-                        <div class="quantity-control">
-                            <button class="quantity-btn">
-                                <span class="material-symbols-outlined">remove</span>
-                            </button>
-                            <span class="quantity-value">1</span>
-                            <button class="quantity-btn">
-                                <span class="material-symbols-outlined">add</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- Items will be loaded dynamically from localStorage -->
             </div>
 
             <!-- Order Summary -->
             <aside class="order-summary fade-in-up" style="animation-delay: 0.3s">
                 <h2 class="summary-title">Tóm Tắt Đơn Hàng</h2>
-
-                <div class="summary-row">
-                    <span>Tạm tính (3 sản phẩm)</span>
-                    <span>550,000đ</span>
-                </div>
 
                 <div class="summary-row">
                     <span>Phí vận chuyển</span>
@@ -138,7 +62,7 @@
 
                 <div class="summary-row total">
                     <span>Tổng cộng</span>
-                    <span>550,000đ</span>
+                    <span id="summaryTotal">0đ</span>
                 </div>
 
                 <a href="checkout.html" class="btn btn-primary btn-lg"
@@ -146,13 +70,6 @@
                     <span class="material-symbols-outlined">shopping_cart_checkout</span>
                     Thanh toán
                 </a>
-
-                <div
-                    style="text-align: center; margin-top: var(--spacing-md); padding: var(--spacing-md); background: rgba(240, 140, 160, 0.1); border-radius: var(--radius-md);">
-                    <p style="font-size: var(--font-size-sm); color: var(--color-vintage-light-brown);">
-                        🎁 Miễn phí vận chuyển cho đơn từ 200,000đ
-                    </p>
-                </div>
             </aside>
         </div>
     </main>
@@ -168,6 +85,117 @@
             <p class="footer-copyright">© 2024 PHUONG 2HAND</p>
         </div>
     </footer>
+
+    <script>
+        // Load and display cart items from localStorage
+        function loadCart() {
+            const container = document.getElementById('cartItemsContainer');
+            const summaryTotal = document.getElementById('summaryTotal');
+
+            // Get cart from localStorage
+            let cart = [];
+            try {
+                cart = JSON.parse(localStorage.getItem('cart')) || [];
+            } catch (e) {
+                cart = [];
+            }
+
+            // Clear container
+            container.innerHTML = '';
+
+            // If cart is empty
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: var(--spacing-3xl); color: var(--color-vintage-light-brown);">
+                        <span class="material-symbols-outlined" style="font-size: 80px; color: var(--color-vintage-accent);">shopping_cart</span>
+                        <h3 style="margin-top: var(--spacing-md); font-family: var(--font-display);">Giỏ hàng trống</h3>
+                        <p style="margin-top: var(--spacing-sm);">Hãy thêm sản phẩm vào giỏ hàng nhé!</p>
+                        <a href="products.html" class="btn btn-primary" style="margin-top: var(--spacing-lg);">
+                            <span class="material-symbols-outlined">shopping_bag</span>
+                            Mua sắm ngay
+                        </a>
+                    </div>
+                `;
+                summaryTotal.textContent = '0đ';
+                return;
+            }
+
+            // Calculate total price
+            let totalPrice = 0;
+
+            // Render cart items
+            cart.forEach((item, index) => {
+                const quantity = parseInt(item.quantity) || 1;
+
+                // Parse price (remove 'đ' and commas)
+                const priceStr = item.price.replace(/[đ,]/g, '');
+                const price = parseInt(priceStr) || 0;
+                totalPrice += price * quantity;
+
+                const cartItemHTML = `
+                    <div class="cart-item fade-in-up" style="animation-delay: ${index * 0.1}s" data-index="${index}">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image" onerror="this.src='../images/product-1.jpg'">
+                        <div class="cart-item-info">
+                            <h3 class="cart-item-name">${item.name}</h3>
+                            <p class="cart-item-price">${item.price}</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="remove-btn" aria-label="Xóa sản phẩm" onclick="removeItem(${index})">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="decreaseQuantity(${index})">
+                                    <span class="material-symbols-outlined">remove</span>
+                                </button>
+                                <span class="quantity-value">${quantity}</span>
+                                <button class="quantity-btn" onclick="increaseQuantity(${index})">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cartItemHTML;
+            });
+
+            // Update total
+            summaryTotal.textContent = totalPrice.toLocaleString('vi-VN') + 'đ';
+        }
+
+        // Remove item from cart
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Increase quantity
+        function increaseQuantity(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart[index].quantity = (parseInt(cart[index].quantity) || 1) + 1;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Decrease quantity
+        function decreaseQuantity(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const currentQty = parseInt(cart[index].quantity) || 1;
+
+            if (currentQty > 1) {
+                cart[index].quantity = currentQty - 1;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCart();
+            } else {
+                // If quantity is 1, remove item
+                removeItem(index);
+            }
+        }
+
+        // Load cart on page load
+        document.addEventListener('DOMContentLoaded', loadCart);
+    </script>
 </body>
 
 </html>
