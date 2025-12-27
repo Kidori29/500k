@@ -152,40 +152,10 @@
             <!-- Order Summary Sidebar -->
             <aside class="order-summary-sidebar">
                 <div class="section-card fade-in-up" style="animation-delay: 0.3s">
-                    <h2 class="summary-title">Đơn Hàng (3 sản phẩm)</h2>
+                    <h2 class="summary-title" id="orderSummaryTitle">Đơn Hàng (0 sản phẩm)</h2>
 
-                    <div class="summary-items">
-                        <div class="summary-item">
-                            <img src="../images/product-1.jpg" alt="Product" class="summary-item-image">
-                            <div class="summary-item-info">
-                                <div class="summary-item-name">Áo Vintage Denim Jacket</div>
-                                <div class="summary-item-meta">Size: M • SL: 1</div>
-                                <div class="summary-item-price">250,000đ</div>
-                            </div>
-                        </div>
-
-                        <div class="summary-item">
-                            <img src="../images/product-2.jpg" alt="Product" class="summary-item-image">
-                            <div class="summary-item-info">
-                                <div class="summary-item-name">Váy Vintage Floral</div>
-                                <div class="summary-item-meta">Size: S • SL: 1</div>
-                                <div class="summary-item-price">180,000đ</div>
-                            </div>
-                        </div>
-
-                        <div class="summary-item">
-                            <img src="../images/product-3.jpg" alt="Product" class="summary-item-image">
-                            <div class="summary-item-info">
-                                <div class="summary-item-name">Áo Thun Basic Tee</div>
-                                <div class="summary-item-meta">Size: L • SL: 1</div>
-                                <div class="summary-item-price">120,000đ</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="summary-row">
-                        <span>Tạm tính</span>
-                        <span>550,000đ</span>
+                    <div class="summary-items" id="checkoutSummaryItems">
+                        <!-- Items will be loaded dynamically from cart -->
                     </div>
 
                     <div class="summary-row">
@@ -195,10 +165,11 @@
 
                     <div class="summary-row total">
                         <span>Tổng cộng</span>
-                        <span>550,000đ</span>
+                        <span id="checkoutTotal">0đ</span>
                     </div>
 
-                    <button class="btn btn-primary btn-lg" style="width: 100%; margin-top: var(--spacing-lg);">
+                    <button id="checkoutButton" class="btn btn-primary btn-lg"
+                        style="width: 100%; margin-top: var(--spacing-lg);">
                         <span class="material-symbols-outlined">check_circle</span>
                         Hoàn tất đơn hàng
                     </button>
@@ -218,6 +189,95 @@
             <p class="footer-copyright">© 2024 PHUONG 2HAND</p>
         </div>
     </footer>
+
+    <script>
+        // Load cart items for checkout
+        function loadCheckoutItems() {
+            const summaryContainer = document.getElementById('checkoutSummaryItems');
+            const orderTitle = document.getElementById('orderSummaryTitle');
+            const totalElement = document.getElementById('checkoutTotal');
+
+            // Get cart from localStorage
+            let cart = [];
+            try {
+                cart = JSON.parse(localStorage.getItem('cart')) || [];
+            } catch (e) {
+                cart = [];
+            }
+
+            // Clear container
+            summaryContainer.innerHTML = '';
+
+            // If cart is empty
+            if (cart.length === 0) {
+                summaryContainer.innerHTML = `
+                    <div style="text-align: center; padding: var(--spacing-xl); color: var(--color-vintage-light-brown);">
+                        <span class="material-symbols-outlined" style="font-size: 60px; color: var(--color-vintage-accent);">shopping_cart</span>
+                        <p style="margin-top: var(--spacing-sm);">Giỏ hàng trống</p>
+                        <a href="products.html" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
+                            <span class="material-symbols-outlined">shopping_bag</span>
+                            Mua sắm ngay
+                        </a>
+                    </div>
+                `;
+                orderTitle.textContent = 'Đơn Hàng (0 sản phẩm)';
+                totalElement.textContent = '0đ';
+                return;
+            }
+
+            // Calculate total
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            // Render items
+            cart.forEach(item => {
+                const quantity = parseInt(item.quantity) || 1;
+                totalItems += quantity;
+
+                // Parse price
+                const priceStr = item.price.replace(/[đ,]/g, '');
+                const price = parseInt(priceStr) || 0;
+                totalPrice += price * quantity;
+
+                const itemHTML = `
+                    <div class="summary-item">
+                        <img src="${item.image}" alt="${item.name}" class="summary-item-image" onerror="this.src='../images/product-1.jpg'">
+                        <div class="summary-item-info">
+                            <div class="summary-item-name">${item.name}</div>
+                            <div class="summary-item-meta">SL: ${quantity}</div>
+                            <div class="summary-item-price">${(price * quantity).toLocaleString('vi-VN')}đ</div>
+                        </div>
+                    </div>
+                `;
+                summaryContainer.innerHTML += itemHTML;
+            });
+
+            // Update summary
+            orderTitle.textContent = `Đơn Hàng (${totalItems} sản phẩm)`;
+            totalElement.textContent = totalPrice.toLocaleString('vi-VN') + 'đ';
+        }
+
+        // Handle checkout button click
+        document.addEventListener('DOMContentLoaded', function () {
+            loadCheckoutItems();
+
+            const checkoutButton = document.getElementById('checkoutButton');
+            checkoutButton.addEventListener('click', function () {
+                if (!this.disabled) {
+                    // Here you can add checkout logic
+                    alert('Đơn hàng đã được đặt thành công! 🎉');
+
+                    // Clear cart after successful checkout
+                    localStorage.removeItem('cart');
+
+                    // Redirect to homepage
+                    setTimeout(() => {
+                        window.location.href = '../index.html';
+                    }, 1500);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

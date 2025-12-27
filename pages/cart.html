@@ -52,7 +52,7 @@
             </div>
 
             <!-- Order Summary -->
-            <aside class="order-summary fade-in-up" style="animation-delay: 0.3s">
+            <aside class="order-summary">
                 <h2 class="summary-title">Tóm Tắt Đơn Hàng</h2>
 
                 <div class="summary-row">
@@ -65,7 +65,7 @@
                     <span id="summaryTotal">0đ</span>
                 </div>
 
-                <a href="checkout.html" class="btn btn-primary btn-lg"
+                <a href="checkout.html" id="checkoutBtn" class="btn btn-primary btn-lg"
                     style="width: 100%; margin-top: var(--spacing-lg);">
                     <span class="material-symbols-outlined">shopping_cart_checkout</span>
                     Thanh toán
@@ -91,6 +91,7 @@
         function loadCart() {
             const container = document.getElementById('cartItemsContainer');
             const summaryTotal = document.getElementById('summaryTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
 
             // Get cart from localStorage
             let cart = [];
@@ -117,6 +118,11 @@
                     </div>
                 `;
                 summaryTotal.textContent = '0đ';
+
+                // Disable checkout button
+                checkoutBtn.style.opacity = '0.5';
+                checkoutBtn.style.pointerEvents = 'none';
+                checkoutBtn.onclick = (e) => { e.preventDefault(); return false; };
                 return;
             }
 
@@ -160,6 +166,11 @@
 
             // Update total
             summaryTotal.textContent = totalPrice.toLocaleString('vi-VN') + 'đ';
+
+            // Enable checkout button
+            checkoutBtn.style.opacity = '1';
+            checkoutBtn.style.pointerEvents = 'auto';
+            checkoutBtn.onclick = null;
         }
 
         // Remove item from cart
