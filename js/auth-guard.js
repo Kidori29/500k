@@ -4,7 +4,7 @@
 // File này bảo vệ các trang yêu cầu đăng nhập
 // Tự động chuyển hướng về trang login nếu chưa đăng nhập
 
-(function() {
+(function () {
     'use strict';
 
     /**
@@ -145,6 +145,7 @@
         }
     }
 
+<<<<<<< Updated upstream
     /**
      * Thêm thông tin user vào header nếu đã đăng nhập
      * Hiển thị tên người dùng và nút đăng xuất trên header
@@ -200,11 +201,16 @@
      * Xóa thông tin đăng nhập và chuyển về trang chủ
      */
     window.logout = function() {
+=======
+
+    // Hàm logout
+    window.logout = function () {
+>>>>>>> Stashed changes
         if (confirm('Bạn có chắc muốn đăng xuất?')) {
             sessionStorage.removeItem('isLoggedIn');
             sessionStorage.removeItem('username');
             sessionStorage.removeItem('redirectAfterLogin');
-            
+
             // Hiển thị thông báo
             const message = document.createElement('div');
             message.style.cssText = `
@@ -253,18 +259,19 @@
     // ==========================================
     // Kiểm tra authentication khi DOM đã load
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            const isAuthenticated = checkAuth();
-            if (isAuthenticated) {
-                addUserInfo();
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
         });
     } else {
+<<<<<<< Updated upstream
         // DOM đã load sẵn, chạy ngay
         const isAuthenticated = checkAuth();
         if (isAuthenticated) {
             addUserInfo();
         }
+=======
+        checkAuth();
+>>>>>>> Stashed changes
     }
 
 })();

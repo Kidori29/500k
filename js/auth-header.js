@@ -31,12 +31,28 @@ function updateHeaderAuth() {
             cartBtnHTML = existingCartBtn.outerHTML;
         }
 
+        // Lấy thông tin nút hành động từ data attributes
+        const actionText = headerAuthSection.dataset.actionText;
+        const actionLink = headerAuthSection.dataset.actionLink;
+        const actionIcon = headerAuthSection.dataset.actionIcon || 'arrow_back';
+
+        let actionBtnHTML = '';
+        if (actionText && actionLink) {
+            actionBtnHTML = `
+                <a href="${actionLink}" class="btn btn-secondary" style="margin-right: 16px;">
+                    <span class="material-symbols-outlined">${actionIcon}</span>
+                    ${actionText}
+                </a>
+             `;
+        }
+
         // Render HTML chuẩn
         headerAuthSection.innerHTML = `
             <div style="display: flex; align-items: center; gap: 8px; margin-right: 16px; height: 48px;">
                 <span class="material-symbols-outlined" style="font-size: 24px; color: var(--color-vintage-brown); display: flex;">person</span>
                 <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--color-vintage-brown); padding-top: 2px;">${displayName}</span>
             </div>
+            ${actionBtnHTML}
             <button onclick="logout()" class="btn btn-secondary" style="margin-right: ${cartBtnHTML ? '16px' : '0'}">
                 <span class="material-symbols-outlined">logout</span>
                 Đăng xuất
