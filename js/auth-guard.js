@@ -146,6 +146,7 @@
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     /**
      * Thêm thông tin user vào header nếu đã đăng nhập
      * Hiển thị tên người dùng và nút đăng xuất trên header
@@ -201,6 +202,11 @@
      * Xóa thông tin đăng nhập và chuyển về trang chủ
      */
     window.logout = function() {
+=======
+
+    // Hàm logout
+    window.logout = function () {
+>>>>>>> Stashed changes
 =======
 
     // Hàm logout
@@ -264,11 +270,15 @@
         });
     } else {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // DOM đã load sẵn, chạy ngay
         const isAuthenticated = checkAuth();
         if (isAuthenticated) {
             addUserInfo();
         }
+=======
+        checkAuth();
+>>>>>>> Stashed changes
 =======
         checkAuth();
 >>>>>>> Stashed changes
