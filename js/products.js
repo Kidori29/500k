@@ -44,11 +44,11 @@ function updateHeaderAuth() {
             const cartBadgeHTML = headerAuthSection.querySelector('.cart-btn-wrapper').outerHTML;
 
             headerAuthSection.innerHTML = `
-                <span style="font-family: var(--font-display); font-weight: 600; color: var(--color-vintage-brown);">
-                    <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 20px; margin-right: 4px;">person</span>
-                    ${displayName}
-                </span>
-                <button onclick="logout()" class="btn btn-secondary" style="padding: var(--spacing-xs) var(--spacing-md);">
+                <div style="display: flex; align-items: center; gap: 8px; margin-right: 16px; height: 48px;">
+                    <span class="material-symbols-outlined" style="font-size: 24px; color: var(--color-vintage-brown); display: flex;">person</span>
+                    <span style="font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--color-vintage-brown); padding-top: 2px;">${displayName}</span>
+                </div>
+                <button onclick="logout()" class="btn btn-secondary">
                     <span class="material-symbols-outlined">logout</span>
                     Đăng xuất
                 </button>
@@ -62,6 +62,7 @@ function updateHeaderAuth() {
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('username');
+    localStorage.removeItem('cart'); // Xóa giỏ hàng khi đăng xuất
     window.location.href = '../index.html';
 }
 
