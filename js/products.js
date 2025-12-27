@@ -1,4 +1,15 @@
-// Cập nhật badge giỏ hàng với số lượng từ localStorage
+// ==========================================
+// QUẢN LÝ SẢN PHẨM - Products Management
+// ==========================================
+// File này xử lý:
+// - Cập nhật badge số lượng giỏ hàng
+// - Thêm sản phẩm vào giỏ hàng
+// - Quản lý header authentication
+
+/**
+ * Cập nhật badge giỏ hàng với số lượng từ localStorage
+ * Hiển thị số lượng sản phẩm trong giỏ hàng trên badge
+ */
 function updateCartBadge() {
     const cartBadge = document.getElementById('cartBadge');
     if (!cartBadge) return;
@@ -28,7 +39,10 @@ function updateCartBadge() {
     }
 }
 
-// Kiểm tra trạng thái đăng nhập và cập nhật header
+/**
+ * Kiểm tra trạng thái đăng nhập và cập nhật header
+ * Hiển thị tên người dùng và nút đăng xuất nếu đã đăng nhập
+ */
 function updateHeaderAuth() {
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
     const username = sessionStorage.getItem('username');
@@ -58,7 +72,10 @@ function updateHeaderAuth() {
     }
 }
 
-// Hàm đăng xuất
+/**
+ * Hàm đăng xuất
+ * Xóa thông tin đăng nhập và giỏ hàng, sau đó chuyển về trang chủ
+ */
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('username');
@@ -66,7 +83,13 @@ function logout() {
     window.location.href = '../index.html';
 }
 
-// Hàm thêm vào giỏ hàng
+/**
+ * Hàm thêm sản phẩm vào giỏ hàng
+ * Nếu sản phẩm đã tồn tại, tăng số lượng; nếu chưa, thêm mới
+ * @param {string} productName - Tên sản phẩm
+ * @param {string} productPrice - Giá sản phẩm (định dạng: "XXX,000đ")
+ * @param {string} productImage - Đường dẫn ảnh sản phẩm
+ */
 function addToCart(productName, productPrice, productImage) {
     // Lấy giỏ hàng hiện tại
     let cart = [];
@@ -99,30 +122,37 @@ function addToCart(productName, productPrice, productImage) {
     updateCartBadge();
 }
 
-// Thêm sự kiện và khởi tạo khi tải trang
+// ==========================================
+// KHỞI TẠO KHI TẢI TRANG
+// ==========================================
 document.addEventListener('DOMContentLoaded', function () {
     // Khởi tạo header và badge giỏ hàng
     updateHeaderAuth();
     updateCartBadge();
 
     // Thêm sự kiện cho tất cả nút "Thêm vào giỏ"
-    const addToCartButtons = document.querySelectorAll('.btn-primary');
+    // Tìm tất cả nút có class btn-primary trong product-card
+    const addToCartButtons = document.querySelectorAll('.product-card .btn-primary');
 
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function (e) {
-            // Lấy thông tin sản phẩm từ thẻ cha
+            // Lấy thông tin sản phẩm từ thẻ cha (product-card)
             const productCard = this.closest('.product-card');
             if (!productCard) return;
 
+            // Trích xuất thông tin sản phẩm
             const productName = productCard.querySelector('.product-name')?.textContent || 'Sản phẩm';
             const productPrice = productCard.querySelector('.product-price')?.textContent || '0đ';
             const productImage = productCard.querySelector('.product-image')?.src || '';
 
             // Thêm vào giỏ hàng
             addToCart(productName, productPrice, productImage);
+            
+            // Hiển thị thông báo thành công (tùy chọn)
+            // Có thể thêm toast notification ở đây
         });
     });
 });
 
-// Cập nhật khi storage thay đổi (nếu thêm sản phẩm từ tab khác)
+// Cập nhật badge khi storage thay đổi (nếu thêm sản phẩm từ tab khác)
 window.addEventListener('storage', updateCartBadge);

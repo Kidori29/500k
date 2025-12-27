@@ -1,11 +1,16 @@
 // ==========================================
 // AUTH GUARD - Bảo vệ các trang yêu cầu đăng nhập
 // ==========================================
+// File này bảo vệ các trang yêu cầu đăng nhập
+// Tự động chuyển hướng về trang login nếu chưa đăng nhập
 
 (function() {
     'use strict';
 
-    // Kiểm tra trạng thái đăng nhập
+    /**
+     * Kiểm tra trạng thái đăng nhập
+     * @returns {boolean} - true nếu đã đăng nhập, false nếu chưa
+     */
     function checkAuth() {
         const isLoggedIn = sessionStorage.getItem('isLoggedIn');
         const username = sessionStorage.getItem('username');
@@ -30,7 +35,10 @@
         return true;
     }
 
-    // Hiển thị thông báo yêu cầu đăng nhập
+    /**
+     * Hiển thị thông báo yêu cầu đăng nhập
+     * Tạo modal overlay với thông báo và tự động chuyển hướng
+     */
     function showAuthRequired() {
         // Tạo overlay
         const overlay = document.createElement('div');
@@ -137,7 +145,10 @@
         }
     }
 
-    // Thêm thông tin user vào header nếu đã đăng nhập
+    /**
+     * Thêm thông tin user vào header nếu đã đăng nhập
+     * Hiển thị tên người dùng và nút đăng xuất trên header
+     */
     function addUserInfo() {
         const username = sessionStorage.getItem('username');
         if (!username) return;
@@ -184,7 +195,10 @@
         buttonsDiv.insertBefore(userInfo, buttonsDiv.firstChild);
     }
 
-    // Hàm logout
+    /**
+     * Hàm đăng xuất toàn cục
+     * Xóa thông tin đăng nhập và chuyển về trang chủ
+     */
     window.logout = function() {
         if (confirm('Bạn có chắc muốn đăng xuất?')) {
             sessionStorage.removeItem('isLoggedIn');
@@ -234,7 +248,10 @@
         document.head.appendChild(style);
     }
 
-    // Chạy khi DOM load
+    // ==========================================
+    // KHỞI TẠO KHI TẢI TRANG
+    // ==========================================
+    // Kiểm tra authentication khi DOM đã load
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
             const isAuthenticated = checkAuth();
@@ -243,6 +260,7 @@
             }
         });
     } else {
+        // DOM đã load sẵn, chạy ngay
         const isAuthenticated = checkAuth();
         if (isAuthenticated) {
             addUserInfo();

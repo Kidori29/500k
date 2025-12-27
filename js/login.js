@@ -1,6 +1,10 @@
 // ==========================================
 // JAVASCRIPT TRANG ĐĂNG NHẬP
 // ==========================================
+// File này xử lý:
+// - Banner carousel với auto-play
+// - Form đăng nhập và validation
+// - Hiển thị thông báo thành công/lỗi
 
 // Dữ liệu banner slider
 const bannerSlides = [
@@ -35,9 +39,13 @@ let currentSlide = 0;
 let autoPlayInterval;
 
 // ==========================================
-// CHỨC NĂNG BANNER CHO SLIDER
+// CHỨC NĂNG BANNER CAROUSEL
 // ==========================================
 
+/**
+ * Khởi tạo banner carousel với auto-play
+ * Tự động chuyển slide mỗi 5 giây, có thể điều khiển bằng dots
+ */
 function initBannerCarousel() {
     const bannerImage = document.querySelector('.banner-image');
     const bannerIcon = document.querySelector('.banner-icon .material-symbols-outlined');
@@ -141,6 +149,10 @@ function initBannerCarousel() {
 // CHỨC NĂNG FORM ĐĂNG NHẬP
 // ==========================================
 
+/**
+ * Khởi tạo form đăng nhập
+ * Xử lý toggle password visibility và submit form
+ */
 function initLoginForm() {
     const loginForm = document.querySelector('.login-form');
     const emailInput = document.getElementById('email');
@@ -227,6 +239,11 @@ function initLoginForm() {
 // THÔNG BÁO TIN NHẮN
 // ==========================================
 
+/**
+ * Hiển thị thông báo toast notification
+ * @param {string} message - Nội dung thông báo
+ * @param {string} type - Loại thông báo: 'success' hoặc 'error'
+ */
 function showMessage(message, type) {
     // Xóa tin nhắn hiện tại
     const existingMessage = document.querySelector('.login-message');
@@ -301,10 +318,10 @@ function showMessage(message, type) {
 // ==========================================
 // KHỞI TẠO KHI TẢI TRANG
 // ==========================================
-
 document.addEventListener('DOMContentLoaded', () => {
+    // Khởi tạo banner carousel
     initBannerCarousel();
+    
+    // Khởi tạo form đăng nhập
     initLoginForm();
-
-
 });

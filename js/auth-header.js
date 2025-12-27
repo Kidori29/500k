@@ -1,6 +1,13 @@
-// QUẢN LÝ HEADER AUTH
-// Xử lý hiển thị thông tin User và Nút đăng xuất đồng bộ trên tất cả các trang
+// ==========================================
+// QUẢN LÝ HEADER AUTHENTICATION
+// ==========================================
+// File này xử lý hiển thị thông tin User và nút đăng xuất
+// Đồng bộ trên tất cả các trang của website
 
+/**
+ * Cập nhật header với thông tin người dùng đã đăng nhập
+ * Hiển thị tên người dùng và nút đăng xuất nếu đã đăng nhập
+ */
 function updateHeaderAuth() {
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
     const username = sessionStorage.getItem('username');
@@ -39,7 +46,10 @@ function updateHeaderAuth() {
     }
 }
 
-// Hàm đăng xuất toàn cục
+/**
+ * Hàm đăng xuất toàn cục
+ * Xóa thông tin đăng nhập, giỏ hàng và chuyển về trang chủ
+ */
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('username');
@@ -52,5 +62,8 @@ function logout() {
     window.location.href = targetPath;
 }
 
-// Tự động chạy khi load trang
+// ==========================================
+// KHỞI TẠO KHI TẢI TRANG
+// ==========================================
+// Tự động cập nhật header khi trang được tải
 document.addEventListener('DOMContentLoaded', updateHeaderAuth);
