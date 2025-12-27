@@ -3,7 +3,7 @@
    ========================================== */
 
 :root {
-    /* ===== COLORS ===== */
+    /* ===== MÀU SẮC ===== */
     --color-primary: #f08ca0;
     --color-primary-dark: #d66a80;
     --color-primary-light: #ffb3c6;
@@ -18,7 +18,7 @@
     --color-surface: #ffffff;
     --color-surface-dark: #3e3230;
 
-    /* ===== TYPOGRAPHY ===== */
+    /* ===== TYPOGRAPHY (PHÔNG CHỮ) ===== */
     --font-display: 'Comfortaa', cursive;
     --font-body: 'Nunito', sans-serif;
 
@@ -41,7 +41,7 @@
     --font-size-5xl: 3rem;
     /* 48px */
 
-    /* ===== SPACING ===== */
+    /* ===== KHOẢNG CÁCH (SPACING) ===== */
     --spacing-xs: 0.5rem;
     /* 8px */
     --spacing-sm: 1rem;
@@ -57,7 +57,7 @@
     --spacing-3xl: 6rem;
     /* 96px */
 
-    /* ===== BORDER RADIUS ===== */
+    /* ===== BO GÓC (BORDER RADIUS) ===== */
     --radius-sm: 0.5rem;
     /* 8px */
     --radius-md: 1rem;
@@ -72,19 +72,19 @@
     /* 48px */
     --radius-full: 9999px;
 
-    /* ===== SHADOWS ===== */
+    /* ===== ĐỔ BÓNG (SHADOWS) ===== */
     --shadow-soft: 0 4px 20px -2px rgba(240, 140, 160, 0.2);
     --shadow-card: 0 2px 10px rgba(93, 64, 55, 0.05);
     --shadow-vintage: 4px 4px 0px 0px rgba(242, 208, 213, 0.5);
     --shadow-cute: 0 8px 30px -4px rgba(240, 140, 160, 0.15);
     --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03);
 
-    /* ===== TRANSITIONS ===== */
+    /* ===== HIỆU ỨNG CHUYỂN ĐỔI (TRANSITIONS) ===== */
     --transition-fast: 150ms ease;
     --transition-base: 300ms ease;
     --transition-slow: 500ms ease;
 
-    /* ===== Z-INDEX ===== */
+    /* ===== THỨ TỰ LỚP (Z-INDEX) ===== */
     --z-dropdown: 1000;
     --z-sticky: 1020;
     --z-fixed: 1030;

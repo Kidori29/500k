@@ -1,4 +1,4 @@
-// AUTH HEADER MANAGER
+// QUẢN LÝ HEADER AUTH
 // Xử lý hiển thị thông tin User và Nút đăng xuất đồng bộ trên tất cả các trang
 
 function updateHeaderAuth() {

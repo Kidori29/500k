@@ -1,5 +1,5 @@
 /* ==========================================
-   CHECKOUT PAGE STYLES
+   STYLE TRANG THANH TOÁN
    ========================================== */
 .login-container {
     display: flex;
@@ -13,19 +13,23 @@
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: var(--color-primary); /* Màu chữ chính */
+    color: var(--color-primary);
+    /* Màu chữ chính */
     font-size: 1.2rem;
     font-weight: 700;
 }
 
 /* 3. Khung tròn chứa ảnh */
 .logo-icon {
-    width: 50px; /* Kích thước vừa vặn */
+    width: 50px;
+    /* Kích thước vừa vặn */
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid #eee; /* Viền mỏng cho logo đỡ bị chìm */
-    flex-shrink: 0; /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
+    border: 1px solid #eee;
+    /* Viền mỏng cho logo đỡ bị chìm */
+    flex-shrink: 0;
+    /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
 }
 
 /* 4. Ảnh Logo */
@@ -34,6 +38,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 .checkout-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -61,7 +66,7 @@
     }
 }
 
-/* Checkout Form */
+/* Form thanh toán */
 .checkout-form {
     display: flex;
     flex-direction: column;
@@ -113,7 +118,7 @@
     }
 }
 
-/* Payment Methods */
+/* Phương thức thanh toán */
 .payment-methods {
     display: flex;
     flex-direction: column;
@@ -178,7 +183,7 @@
     color: var(--color-vintage-light-brown);
 }
 
-/* Order Summary Sidebar */
+/* Sidebar tóm tắt đơn hàng */
 .order-summary-sidebar {
     position: sticky;
     top: 100px;

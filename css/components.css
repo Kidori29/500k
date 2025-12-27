@@ -2,16 +2,16 @@
    COMPONENTS - Phuong 2Hand
    ========================================== */
 
-/* ===== BUTTONS ===== */
+/* ===== NÚT BẤM ===== */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-xs);
     padding: 0 var(--spacing-lg);
-    /* Sử dụng padding ngang, bỏ padding dọc vì đã fix height */
+    /* Sử dụng padding ngang, bỏ padding dọc vì đã cố định chiều cao */
     height: 48px;
-    /* Fix chiều cao bằng nhau */
+    /* Cố định chiều cao bằng nhau */
     font-family: var(--font-display);
     font-size: var(--font-size-base);
     font-weight: 700;
@@ -69,7 +69,7 @@
     height: 64px;
 }
 
-/* ===== CARDS ===== */
+/* ===== THẺ (CARDS) ===== */
 .card {
     background: white;
     border-radius: var(--radius-xl);
@@ -93,7 +93,7 @@
     box-shadow: var(--shadow-soft);
 }
 
-/* ===== FORMS ===== */
+/* ===== FORM ===== */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -144,7 +144,7 @@
     height: 56px;
     padding: var(--spacing-sm) var(--spacing-md);
     padding-right: 40px;
-    /* Space for the arrow */
+    /* Khoảng trống cho mũi tên */
     font-family: var(--font-body);
     font-size: var(--font-size-sm);
     font-weight: 600;
@@ -174,11 +174,11 @@
     box-shadow: 0 0 0 4px rgba(240, 140, 160, 0.1);
 }
 
-/* Style for dropdown options */
+/* Style cho các tùy chọn dropdown */
 .form-select option {
     font-family: var(--font-body);
     font-size: 15px;
-    /* Tăng size chữ một chút cho dễ đọc */
+    /* Tăng kích thước chữ để dễ đọc */
     padding: 10px;
     /* Một số trình duyệt hỗ trợ padding này */
     background-color: white;
@@ -186,13 +186,13 @@
     min-height: 40px;
 }
 
-/* Style for invalid/placeholder option */
+/* Style cho tùy chọn không hợp lệ/placeholder */
 .form-select option[value=""] {
     color: var(--color-vintage-light-brown);
     font-style: italic;
 }
 
-/* ===== CUSTOM UI SELECT (Javascript Replacement) ===== */
+/* ===== CUSTOM UI SELECT (Thay thế bằng Javascript) ===== */
 .custom-select-wrapper {
     position: relative;
     user-select: none;
@@ -293,7 +293,7 @@
     background-color: rgba(240, 140, 160, 0.1);
     color: var(--color-primary);
     padding-left: 24px;
-    /* Slide effect on hover */
+    /* Hiệu ứng trượt khi hover */
 }
 
 .custom-option.selected {
@@ -301,7 +301,7 @@
     background-color: rgba(240, 140, 160, 0.05);
 }
 
-/* Custom Scrollbar for Options */
+/* Thanh cuộn tùy chỉnh cho Options */
 .custom-options::-webkit-scrollbar {
     width: 6px;
 }
@@ -406,7 +406,7 @@
     color: rgba(93, 64, 55, 0.4);
 }
 
-/* ===== PRODUCT CARD ===== */
+/* ===== THẺ SẢN PHẨM ===== */
 .product-card {
     background: white;
     border-radius: var(--radius-2xl);
@@ -445,7 +445,7 @@
     color: var(--color-primary);
 }
 
-/* ===== CART BADGE ===== */
+/* ===== BADGE GIỎ HÀNG ===== */
 .cart-btn-wrapper {
     position: relative;
     display: inline-block;

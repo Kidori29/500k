@@ -1,8 +1,8 @@
 // ==========================================
-// LOGIN PAGE JAVASCRIPT
+// JAVASCRIPT TRANG ĐĂNG NHẬP
 // ==========================================
 
-// Banner carousel data
+// Dữ liệu banner slider
 const bannerSlides = [
     {
         image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDV-ff7XfJCnsqO9Z_NMf0VLUpr9c008zeLHeGmILperILaAAUTZDc-9aGjTBBfmJoQ788Ivapsza1uOMtAxTF_6m29k39jeqk9bDdJ9r8BQCHB-b7waJULJ0xznJt7D6RScvI9YJvg3FFgm6YkYMB-7yq1CjjNcA_0lb_O7Uj4mQWRiPqlrrVy8FxrmWfK5NHdmF9J3kxg0r3MhJolhDE5mQ6ch5BJ-HJmIrbp2J0r2YavyYDReLvSWUvKSVdjrp5SRZmv_bd8X7g',
@@ -24,18 +24,18 @@ const bannerSlides = [
     }
 ];
 
-// Valid login credentials
+// Thông tin đăng nhập hợp lệ
 const validCredentials = [
     { username: 'admin@admin.com', password: 'admin' },
     { username: 'phuong123', password: '123' }
 ];
 
-// State
+// Trạng thái
 let currentSlide = 0;
 let autoPlayInterval;
 
 // ==========================================
-// BANNER CAROUSEL FUNCTIONALITY
+// CHỨC NĂNG BANNER CHO SLIDER
 // ==========================================
 
 function initBannerCarousel() {
@@ -47,23 +47,23 @@ function initBannerCarousel() {
 
     if (!bannerImage || !bannerIcon || !bannerTitle || !bannerText) return;
 
-    // Update slide content with fade animation
+    // Cập nhật nội dung slide với hiệu ứng fade
     function updateSlide(index) {
         const slide = bannerSlides[index];
         const bannerCard = document.querySelector('.banner-card');
 
-        // Add fade out effect
+        // Thêm hiệu ứng fade out
         bannerCard.style.opacity = '0';
         bannerCard.style.transform = 'translateY(20px)';
 
         setTimeout(() => {
-            // Update content
+            // Cập nhật nội dung
             bannerImage.style.backgroundImage = `url('${slide.image}')`;
             bannerIcon.textContent = slide.icon;
             bannerTitle.textContent = slide.title;
             bannerText.textContent = slide.text;
 
-            // Update dots
+            // Cập nhật chấm tròn
             dots.forEach((dot, i) => {
                 if (i === index) {
                     dot.classList.add('active');
@@ -74,7 +74,7 @@ function initBannerCarousel() {
                 }
             });
 
-            // Fade in
+            // Hiện dần (Fade in)
             setTimeout(() => {
                 bannerCard.style.opacity = '1';
                 bannerCard.style.transform = 'translateY(0)';
@@ -82,19 +82,19 @@ function initBannerCarousel() {
         }, 300);
     }
 
-    // Next slide
+    // Slide tiếp theo
     function nextSlide() {
         currentSlide = (currentSlide + 1) % bannerSlides.length;
         updateSlide(currentSlide);
     }
 
-    // Previous slide
+    // Slide trước đó
     function previousSlide() {
         currentSlide = (currentSlide - 1 + bannerSlides.length) % bannerSlides.length;
         updateSlide(currentSlide);
     }
 
-    // Auto play
+    // Tự động chạy
     function startAutoPlay() {
         stopAutoPlay();
         autoPlayInterval = setInterval(nextSlide, 5000);
@@ -106,7 +106,7 @@ function initBannerCarousel() {
         }
     }
 
-    // Dot click handlers
+    // Xử lý khi click vào chấm tròn
     dots.forEach((dot, index) => {
         dot.style.cursor = 'pointer';
         dot.addEventListener('click', () => {
@@ -117,25 +117,25 @@ function initBannerCarousel() {
         });
     });
 
-    // Banner hover - pause auto play
+    // Tạm dừng khi di chuột vào banner
     const bannerSide = document.querySelector('.login-banner-side');
     if (bannerSide) {
         bannerSide.addEventListener('mouseenter', stopAutoPlay);
         bannerSide.addEventListener('mouseleave', startAutoPlay);
     }
 
-    // Add smooth transition to banner card
+    // Thêm hiệu ứng chuyển cảnh mượt cho banner card
     const bannerCard = document.querySelector('.banner-card');
     if (bannerCard) {
         bannerCard.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
 
-    // Start auto play
+    // Bắt đầu tự động chạy
     startAutoPlay();
 }
 
 // ==========================================
-// LOGIN FORM FUNCTIONALITY
+// CHỨC NĂNG FORM ĐĂNG NHẬP
 // ==========================================
 
 function initLoginForm() {
@@ -146,58 +146,58 @@ function initLoginForm() {
 
     if (!loginForm) return;
 
-    // Toggle password visibility
+    // Ẩn/hiện mật khẩu
     if (togglePasswordBtn) {
         togglePasswordBtn.addEventListener('click', () => {
             const type = passwordInput.type === 'password' ? 'text' : 'password';
             passwordInput.type = type;
-            
+
             const icon = togglePasswordBtn.querySelector('.material-symbols-outlined');
             icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
         });
     }
 
-    // Form submission
+    // Xử lý submit form
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Get input values (using email field as username)
+        // Lấy giá trị input (sử dụng email làm username)
         const username = emailInput.value.trim();
         const password = passwordInput.value;
 
-        // Validate credentials
+        // Xác thực thông tin
         const isValid = validCredentials.some(
             cred => cred.username === username && cred.password === password
         );
 
         if (isValid) {
-            // Success animation
+            // Hiệu ứng thành công
             showMessage('Đăng nhập thành công!', 'success');
-            
-            // Store login state
+
+            // Lưu trạng thái đăng nhập
             sessionStorage.setItem('isLoggedIn', 'true');
             sessionStorage.setItem('username', username);
 
-            // Check if there's a redirect URL
+            // Kiểm tra URL chuyển hướng
             const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
-            
-            // Redirect after delay
+
+            // Chuyển hướng sau độ trễ
             setTimeout(() => {
                 if (redirectUrl) {
-                    // Clear redirect URL
+                    // Xóa URL chuyển hướng
                     sessionStorage.removeItem('redirectAfterLogin');
-                    // Redirect to the original page
+                    // Chuyển hướng về trang gốc
                     window.location.href = redirectUrl;
                 } else {
-                    // Default redirect to home
+                    // Mặc định về trang chủ
                     window.location.href = '../index.html';
                 }
             }, 1500);
         } else {
-            // Error animation
+            // Hiệu ứng lỗi
             showMessage('Tên đăng nhập hoặc mật khẩu không đúng!', 'error');
-            
-            // Shake animation
+
+            // Hiệu ứng rung
             loginForm.style.animation = 'shake 0.5s';
             setTimeout(() => {
                 loginForm.style.animation = '';
@@ -205,7 +205,7 @@ function initLoginForm() {
         }
     });
 
-    // Add shake animation to CSS if not exists
+    // Thêm animation rung vào CSS nếu chưa có
     if (!document.querySelector('#shake-animation')) {
         const style = document.createElement('style');
         style.id = 'shake-animation';
@@ -221,22 +221,22 @@ function initLoginForm() {
 }
 
 // ==========================================
-// MESSAGE NOTIFICATION
+// THÔNG BÁO TIN NHẮN
 // ==========================================
 
 function showMessage(message, type) {
-    // Remove existing message
+    // Xóa tin nhắn hiện tại
     const existingMessage = document.querySelector('.login-message');
     if (existingMessage) {
         existingMessage.remove();
     }
 
-    // Create message element
+    // Tạo element tin nhắn
     const messageDiv = document.createElement('div');
     messageDiv.className = `login-message login-message-${type}`;
     messageDiv.textContent = message;
-    
-    // Style the message
+
+    // Style cho tin nhắn
     messageDiv.style.cssText = `
         position: fixed;
         top: 20px;
@@ -260,7 +260,7 @@ function showMessage(message, type) {
 
     document.body.appendChild(messageDiv);
 
-    // Add animations
+    // Thêm animation
     if (!document.querySelector('#message-animations')) {
         const style = document.createElement('style');
         style.id = 'message-animations';
@@ -289,22 +289,19 @@ function showMessage(message, type) {
         document.head.appendChild(style);
     }
 
-    // Remove after animation
+    // Xóa sau khi chạy animation
     setTimeout(() => {
         messageDiv.remove();
     }, 3000);
 }
 
 // ==========================================
-// INITIALIZE ON PAGE LOAD
+// KHỞI TẠO KHI TẢI TRANG
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
     initBannerCarousel();
     initLoginForm();
-    
-    console.log('Phuong 2Hand - Login page loaded');
-    console.log('Valid credentials:');
-    console.log('   - admin / admin');
-    console.log('   - phuong123 / 123');
+
+
 });

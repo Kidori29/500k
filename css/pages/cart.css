@@ -1,5 +1,5 @@
 /* ==========================================
-   CART PAGE STYLES
+   STYLE TRANG GIỎ HÀNG
    ========================================== */
 .login-container {
     display: flex;
@@ -13,19 +13,23 @@
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: var(--color-primary); /* Màu chữ chính */
+    color: var(--color-primary);
+    /* Màu chữ chính */
     font-size: 1.2rem;
     font-weight: 700;
 }
 
 /* 3. Khung tròn chứa ảnh */
 .logo-icon {
-    width: 50px; /* Kích thước vừa vặn */
+    width: 50px;
+    /* Kích thước vừa vặn */
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid #eee; /* Viền mỏng cho logo đỡ bị chìm */
-    flex-shrink: 0; /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
+    border: 1px solid #eee;
+    /* Viền mỏng cho logo đỡ bị chìm */
+    flex-shrink: 0;
+    /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
 }
 
 /* 4. Ảnh Logo */
@@ -69,7 +73,7 @@
     }
 }
 
-/* Cart Items */
+/* Sản phẩm trong giỏ */
 .cart-items {
     display: flex;
     flex-direction: column;
@@ -178,7 +182,7 @@
     transform: scale(1.2);
 }
 
-/* Order Summary */
+/* Tóm tắt đơn hàng */
 .order-summary {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);

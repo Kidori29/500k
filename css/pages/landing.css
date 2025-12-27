@@ -1,8 +1,8 @@
 /* ==========================================
-   LANDING PAGE STYLES
+   STYLE TRANG LANDING
    ========================================== */
 
-/* ===== HERO SECTION ===== */
+/* ===== PHẦN HERO ===== */
 .hero {
     min-height: 60vh;
     display: flex;
@@ -87,7 +87,7 @@
     justify-content: center;
 }
 
-/* ===== NAVIGATION CARDS ===== */
+/* ===== THẺ ĐIỀU HƯỚNG ===== */
 .nav-section {
     padding: var(--spacing-3xl) var(--spacing-md);
 }
@@ -178,7 +178,7 @@
     font-weight: 500;
 }
 
-/* Cart badge in nav cards */
+/* Badge giỏ hàng trong thẻ điều hướng */
 .nav-card .cart-btn-wrapper {
     display: inline-block;
 }
@@ -194,19 +194,23 @@
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: var(--color-primary); /* Màu chữ chính */
+    color: var(--color-primary);
+    /* Màu chữ chính */
     font-size: 1.2rem;
     font-weight: 700;
 }
 
 /* 3. Khung tròn chứa ảnh */
 .logo-icon {
-    width: 50px; /* Kích thước vừa vặn */
+    width: 50px;
+    /* Kích thước vừa vặn */
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid #eee; /* Viền mỏng cho logo đỡ bị chìm */
-    flex-shrink: 0; /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
+    border: 1px solid #eee;
+    /* Viền mỏng cho logo đỡ bị chìm */
+    flex-shrink: 0;
+    /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
 }
 
 /* 4. Ảnh Logo */
@@ -216,7 +220,7 @@
     object-fit: cover;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE (ĐÁP ỨNG) ===== */
 @media (max-width: 768px) {
     .hero {
         min-height: 50vh;

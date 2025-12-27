@@ -1,5 +1,5 @@
 /* ==========================================
-   LOGIN PAGE STYLES
+   STYLE TRANG ĐĂNG NHẬP
    ========================================== */
 
 .login-container {
@@ -14,19 +14,23 @@
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: var(--color-primary); /* Màu chữ chính */
+    color: var(--color-primary);
+    /* Màu chữ chính */
     font-size: 1.2rem;
     font-weight: 700;
 }
 
 /* 3. Khung tròn chứa ảnh */
 .logo-icon {
-    width: 50px; /* Kích thước vừa vặn */
+    width: 50px;
+    /* Kích thước vừa vặn */
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid #eee; /* Viền mỏng cho logo đỡ bị chìm */
-    flex-shrink: 0; /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
+    border: 1px solid #eee;
+    /* Viền mỏng cho logo đỡ bị chìm */
+    flex-shrink: 0;
+    /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
 }
 
 /* 4. Ảnh Logo */
@@ -36,7 +40,7 @@
     object-fit: cover;
 }
 
-/* ===== BACKGROUND DECORATIONS ===== */
+/* ===== TRANG TRÍ NỀN ===== */
 .bg-decoration {
     position: absolute;
     border-radius: 50%;
@@ -60,7 +64,7 @@
     background: radial-gradient(circle, rgba(242, 208, 213, 0.2) 0%, transparent 70%);
 }
 
-/* ===== LEFT SIDE: LOGIN FORM ===== */
+/* ===== BÊN TRÁI: FORM ĐĂNG NHẬP ===== */
 .login-form-side {
     position: relative;
     z-index: 10;
@@ -261,7 +265,7 @@
     color: var(--color-primary);
 }
 
-/* ===== RIGHT SIDE: BANNER ===== */
+/* ===== BÊN PHẢI: BANNER ===== */
 .login-banner-side {
     display: none;
     flex: 1;
@@ -366,7 +370,7 @@
     border-radius: var(--radius-full);
 }
 
-/* Floating decorations */
+/* Trang trí nổi */
 .floating-decoration {
     position: absolute;
     backdrop-filter: blur(12px);
@@ -412,7 +416,7 @@
     }
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE (ĐÁP ỨNG) ===== */
 @media (min-width: 768px) {
     .login-form-side {
         width: 50%;

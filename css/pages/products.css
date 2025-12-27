@@ -1,28 +1,28 @@
-.login-container {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: row;
-    overflow: hidden;
-}
-
+/* ==========================================
+   STYLE TRANG SẢN PHẨM
+   ========================================== */
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: var(--color-primary); /* Màu chữ chính */
+    color: var(--color-primary);
+    /* Màu chữ chính */
     font-size: 1.2rem;
     font-weight: 700;
 }
 
 /* 3. Khung tròn chứa ảnh */
 .logo-icon {
-    width: 50px; /* Kích thước vừa vặn */
+    width: 50px;
+    /* Kích thước vừa vặn */
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid #eee; /* Viền mỏng cho logo đỡ bị chìm */
-    flex-shrink: 0; /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
+    border: 1px solid #eee;
+    /* Viền mỏng cho logo đỡ bị chìm */
+    flex-shrink: 0;
+    /* Quan trọng: Giữ logo không bị méo khi màn hình nhỏ */
 }
 
 /* 4. Ảnh Logo */

@@ -1,13 +1,13 @@
-// Check login status and update header
+// Kiểm tra trạng thái đăng nhập và cập nhật header
 function updateHeaderAuth() {
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
     const username = sessionStorage.getItem('username');
 
     if (isLoggedIn === 'true' && username) {
-        // Extract name from email (part before @)
+        // Lấy tên từ email (phần trước @)
         const displayName = username.split('@')[0];
 
-        // Find the header auth section
+        // Tìm phần auth trên header
         const headerAuthSection = document.getElementById('headerAuthSection');
         if (headerAuthSection) {
             headerAuthSection.innerHTML = `
@@ -24,7 +24,7 @@ function updateHeaderAuth() {
     }
 }
 
-// Logout function
+// Hàm đăng xuất
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('username');
@@ -32,14 +32,14 @@ function logout() {
     window.location.href = '../index.html';
 }
 
-// Load cart items for checkout
+// Tải sản phẩm trong giỏ hàng để thanh toán
 function loadCheckoutCart() {
     const container = document.getElementById('checkoutItemsContainer');
     const subtotalElement = document.getElementById('checkoutSubtotal');
     const totalElement = document.getElementById('checkoutTotal');
     const summaryTitle = document.getElementById('checkoutSummaryTitle');
 
-    // Get cart from localStorage
+    // Lấy giỏ hàng từ localStorage
     let cart = [];
     try {
         cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -47,28 +47,26 @@ function loadCheckoutCart() {
         cart = [];
     }
 
-    // Redirect if empty
+    // Chuyển hướng nếu giỏ hàng trống
     if (cart.length === 0) {
-        // Option: Redirect to products or show message
-        // For now, let's just show empty state or redirect
-        // window.location.href = 'products.html'; // Uncomment to auto-redirect
+
         if (summaryTitle) summaryTitle.textContent = 'Đơn Hàng (0 sản phẩm)';
         if (container) container.innerHTML = '<p style="text-align:center; padding: 20px;">Giỏ hàng trống</p>';
         return;
     }
 
-    // Update summary title
+    // Cập nhật tiêu đề tóm tắt
     let totalItems = 0;
     cart.forEach(item => totalItems += (parseInt(item.quantity) || 1));
     if (summaryTitle) summaryTitle.textContent = `Đơn Hàng (${totalItems} sản phẩm)`;
 
-    // Calculate total and render items
+    // Tính tổng tiền và hiển thị sản phẩm
     let totalPrice = 0;
     if (container) container.innerHTML = '';
 
     cart.forEach(item => {
         const quantity = parseInt(item.quantity) || 1;
-        // Parse price
+        // Phân tích giá
         const priceStr = item.price.replace(/[đ,.]/g, '');
         const price = parseInt(priceStr) || 0;
         totalPrice += price * quantity;
@@ -88,27 +86,22 @@ function loadCheckoutCart() {
         if (container) container.innerHTML += html;
     });
 
-    // Update totals
+    // Cập nhật tổng tiền
     const formattedTotal = totalPrice.toLocaleString('vi-VN') + 'đ';
     if (subtotalElement) subtotalElement.textContent = formattedTotal;
     if (totalElement) totalElement.textContent = formattedTotal;
 }
 
-// Run on page load
+// Chạy khi tải trang
 document.addEventListener('DOMContentLoaded', function () {
     updateHeaderAuth();
     loadCheckoutCart();
 
-    // Handle Order Completion
+    // Xử lý hoàn tất đơn hàng
     const completeOrderBtn = document.getElementById('completeOrderBtn');
     if (completeOrderBtn) {
         completeOrderBtn.addEventListener('click', function () {
-            // In a real app, we would validate the form here
-            // const form = document.querySelector('form');
-            // if (!form.checkValidity()) {
-            //     form.reportValidity();
-            //     return;
-            // }
+
 
             alert('Đã đặt hàng thành công! Cảm ơn bạn đã mua sắm tại Phuong 2Hand.');
             localStorage.removeItem('cart');

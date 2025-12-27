@@ -1,9 +1,9 @@
-// Update cart badge with item count from localStorage
+// Cập nhật badge giỏ hàng với số lượng từ localStorage
 function updateCartBadge() {
     const cartBadge = document.getElementById('cartBadge');
     if (!cartBadge) return;
 
-    // Get cart data from localStorage
+    // Lấy dữ liệu giỏ hàng từ localStorage
     let cart = [];
     try {
         cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -11,7 +11,7 @@ function updateCartBadge() {
         cart = [];
     }
 
-    // Calculate total items
+    // Tính tổng số lượng sản phẩm
     let totalItems = 0;
     if (Array.isArray(cart)) {
         totalItems = cart.reduce((sum, item) => {
@@ -19,7 +19,7 @@ function updateCartBadge() {
         }, 0);
     }
 
-    // Update badge
+    // Cập nhật badge
     if (totalItems > 0) {
         cartBadge.textContent = totalItems;
         cartBadge.classList.remove('hidden');
@@ -28,19 +28,19 @@ function updateCartBadge() {
     }
 }
 
-// Check login status and update header
+// Kiểm tra trạng thái đăng nhập và cập nhật header
 function updateHeaderAuth() {
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
     const username = sessionStorage.getItem('username');
 
     if (isLoggedIn === 'true' && username) {
-        // Extract name from email (part before @)
+        // Lấy tên từ email (phần trước @)
         const displayName = username.split('@')[0];
 
-        // Find the header auth section
+        // Tìm phần auth trên header
         const headerAuthSection = document.getElementById('headerAuthSection');
         if (headerAuthSection) {
-            // Preserve cart badge
+            // Giữ lại badge giỏ hàng
             const cartBadgeHTML = headerAuthSection.querySelector('.cart-btn-wrapper').outerHTML;
 
             headerAuthSection.innerHTML = `
@@ -58,7 +58,7 @@ function updateHeaderAuth() {
     }
 }
 
-// Logout function
+// Hàm đăng xuất
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('username');
@@ -66,9 +66,9 @@ function logout() {
     window.location.href = '../index.html';
 }
 
-// Add to cart function
+// Hàm thêm vào giỏ hàng
 function addToCart(productName, productPrice, productImage) {
-    // Get current cart
+    // Lấy giỏ hàng hiện tại
     let cart = [];
     try {
         cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -76,14 +76,14 @@ function addToCart(productName, productPrice, productImage) {
         cart = [];
     }
 
-    // Check if product already exists
+    // Kiểm tra nếu sản phẩm đã tồn tại
     const existingProductIndex = cart.findIndex(item => item.name === productName);
 
     if (existingProductIndex !== -1) {
-        // Increase quantity
+        // Tăng số lượng
         cart[existingProductIndex].quantity = (parseInt(cart[existingProductIndex].quantity) || 1) + 1;
     } else {
-        // Add new product
+        // Thêm sản phẩm mới
         cart.push({
             name: productName,
             price: productPrice,
@@ -92,25 +92,25 @@ function addToCart(productName, productPrice, productImage) {
         });
     }
 
-    // Save to localStorage
+    // Lưu vào localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Update badge
+    // Cập nhật badge
     updateCartBadge();
 }
 
-// Add event listeners and initialize on page load
+// Thêm sự kiện và khởi tạo khi tải trang
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize header and cart badge
+    // Khởi tạo header và badge giỏ hàng
     updateHeaderAuth();
     updateCartBadge();
 
-    // Add event listeners to all "Add to cart" buttons
+    // Thêm sự kiện cho tất cả nút "Thêm vào giỏ"
     const addToCartButtons = document.querySelectorAll('.btn-primary');
 
     addToCartButtons.forEach(button => {
         button.addEventListener('click', function (e) {
-            // Get product info from parent card
+            // Lấy thông tin sản phẩm từ thẻ cha
             const productCard = this.closest('.product-card');
             if (!productCard) return;
 
@@ -118,11 +118,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const productPrice = productCard.querySelector('.product-price')?.textContent || '0đ';
             const productImage = productCard.querySelector('.product-image')?.src || '';
 
-            // Add to cart
+            // Thêm vào giỏ hàng
             addToCart(productName, productPrice, productImage);
         });
     });
 });
 
-// Update when storage changes (if items added from another tab)
+// Cập nhật khi storage thay đổi (nếu thêm sản phẩm từ tab khác)
 window.addEventListener('storage', updateCartBadge);

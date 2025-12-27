@@ -8,18 +8,18 @@
         content="Phuong 2Hand - Khám phá bộ sưu tập đồ secondhand vintage được tuyển chọn kỹ lưỡng">
     <title>Phuong 2Hand - Trang Chủ</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Phông chữ) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Material Icons -->
+    <!-- Material Icons (Biểu tượng) -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet">
 
-    <!-- CSS Files -->
+    <!-- CSS Files (Tệp kiểu) -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/components.css">
@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- Header (Đầu trang) -->
     <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
@@ -45,7 +45,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Phần giới thiệu) -->
     <section class="hero">
         <div class="hero-content fade-in-up">
             <h1 class="hero-title">
@@ -68,11 +68,11 @@
         </div>
     </section>
 
-    <!-- Navigation Cards Section -->
+    <!-- Navigation Cards Section (Phần thẻ điều hướng) -->
     <section class="nav-section" id="navigation">
         <h2 class="nav-title">Bắt đầu mua sắm</h2>
         <div class="nav-grid">
-            <!-- Card 1: Products -->
+            <!-- Thẻ 1: Sản phẩm -->
             <a href="pages/products.html" class="nav-card fade-in-up">
                 <div class="nav-icon">
                     <span class="material-symbols-outlined">shopping_bag</span>
@@ -83,7 +83,7 @@
                 </p>
             </a>
 
-            <!-- Card 2: Cart -->
+            <!-- Thẻ 2: Giỏ hàng -->
             <a href="pages/cart.html" class="nav-card fade-in-up" style="animation-delay: 0.1s">
                 <div class="cart-btn-wrapper" style="position: relative;">
                     <div class="nav-icon">
@@ -97,7 +97,7 @@
                 </p>
             </a>
 
-            <!-- Card 3: Checkout -->
+            <!-- Thẻ 3: Thanh toán -->
             <a href="pages/checkout.html" class="nav-card fade-in-up" style="animation-delay: 0.2s">
                 <div class="nav-icon">
                     <span class="material-symbols-outlined">payments</span>
@@ -110,7 +110,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (Chân trang) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
@@ -125,12 +125,12 @@
 
     <script src="js/auth-header.js"></script>
     <script>
-        // Update cart badge with item count from localStorage
+        // Cập nhật badge giỏ hàng với số lượng từ localStorage
         function updateCartBadge() {
             const cartBadge = document.getElementById('cartBadge');
             if (!cartBadge) return;
 
-            // Get cart data from localStorage
+            // Lấy dữ liệu giỏ hàng từ localStorage
             let cart = [];
             try {
                 cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -138,7 +138,7 @@
                 cart = [];
             }
 
-            // Calculate total items
+            // Tính tổng số lượng sản phẩm
             let totalItems = 0;
             if (Array.isArray(cart)) {
                 totalItems = cart.reduce((sum, item) => {
@@ -146,7 +146,7 @@
                 }, 0);
             }
 
-            // Update badge
+            // Cập nhật badge
             if (totalItems > 0) {
                 cartBadge.textContent = totalItems;
                 cartBadge.classList.remove('hidden');
@@ -155,10 +155,10 @@
             }
         }
 
-        // Run on page load
+        // Chạy khi tải trang
         updateCartBadge();
 
-        // Update when storage changes (if items added from another tab)
+        // Cập nhật khi storage thay đổi (nếu thêm sản phẩm từ tab khác)
         window.addEventListener('storage', updateCartBadge);
     </script>
 </body>

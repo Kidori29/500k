@@ -1,31 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Find all native selects with class 'form-select'
+    // Tìm tất cả thẻ select gốc có class 'form-select'
     const nativeSelects = document.querySelectorAll('.form-select');
 
     nativeSelects.forEach(select => {
-        // Hide native select
+        // Ẩn select gốc
         select.style.display = 'none';
 
-        // Ensure styling from css classes is not interfering
-        // We will create a wrapper structure
+        // Đảm bảo style từ CSS không bị xung đột
+        // Tạo cấu trúc wrapper
 
-        // 1. Create Wrapper
+        // 1. Tạo Wrapper
         const wrapper = document.createElement('div');
         wrapper.className = 'custom-select-wrapper';
-        wrapper.classList.add('custom-select'); // Used for open state toggling
+        wrapper.classList.add('custom-select'); // Dùng để toggle trạng thái mở
 
-        // 2. Create Trigger (Display Text)
+        // 2. Tạo Trigger (Hiển thị văn bản)
         const trigger = document.createElement('div');
         trigger.className = 'custom-select-trigger';
-        // Set initial text
+        // Đặt văn bản ban đầu
         const selectedOption = select.options[select.selectedIndex];
         trigger.textContent = selectedOption ? selectedOption.textContent : select.options[0].textContent;
 
-        // 3. Create Custom Options Container
+        // 3. Tạo Container tùy chọn tùy chỉnh
         const customOptions = document.createElement('div');
         customOptions.className = 'custom-options';
 
-        // 4. Populate Options
+        // 4. Thêm các tùy chọn
         Array.from(select.options).forEach(option => {
             const customOption = document.createElement('span');
             customOption.className = 'custom-option';
@@ -36,39 +36,39 @@ document.addEventListener('DOMContentLoaded', function () {
                 customOption.classList.add('selected');
             }
 
-            // Handle Option Click
+            // Xử lý khi click vào tùy chọn
             customOption.addEventListener('click', function () {
-                // Update selected class
+                // Cập nhật class selected
                 customOptions.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
                 this.classList.add('selected');
 
-                // Update Triggle Text
+                // Cập nhật văn bản Trigger
                 trigger.textContent = this.textContent;
 
-                // Update Native Select Value
+                // Cập nhật giá trị Select gốc
                 select.value = this.dataset.value;
 
-                // Trigger 'change' event on native select (for other scripts listening)
+                // Kích hoạt sự kiện 'change' trên select gốc (cho các script khác)
                 select.dispatchEvent(new Event('change'));
 
-                // Close dropdown
+                // Đóng dropdown
                 wrapper.classList.remove('open');
             });
 
             customOptions.appendChild(customOption);
         });
 
-        // 5. Assemble and Insert
+        // 5. Lắp ráp và chèn vào DOM
         wrapper.appendChild(trigger);
         wrapper.appendChild(customOptions);
 
-        // Insert after native select
+        // Chèn sau select gốc
         select.parentNode.insertBefore(wrapper, select.nextSibling);
 
-        // 6. Handle Trigger Click (Toggle)
+        // 6. Xử lý click Trigger (Toggle)
         trigger.addEventListener('click', function (e) {
-            e.stopPropagation(); // Prevent closing immediately
-            // Close other open selects
+            e.stopPropagation(); // Ngăn đóng ngay lập tức
+            // Đóng các select đang mở khác
             document.querySelectorAll('.custom-select').forEach(other => {
                 if (other !== wrapper) other.classList.remove('open');
             });
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Close dropdown when clicking outside
+    // Đóng dropdown khi click ra ngoài
     document.addEventListener('click', function (e) {
         if (!e.target.closest('.custom-select')) {
             document.querySelectorAll('.custom-select').forEach(select => {
