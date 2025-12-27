@@ -174,6 +174,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
 
                 <!-- Product 2 -->
                 <div class="product-card fade-in-up" style="animation-delay: 0.1s">
@@ -299,6 +300,13 @@
                     </button>
                 </form>
             </div>
+=======
+                <h3 class="nav-card-title">Giỏ hàng</h3>
+                <p class="nav-card-desc">
+                    Xem và quản lý các sản phẩm yêu thích trong giỏ hàng của bạn
+                </p>
+            </a>
+>>>>>>> c974e7caf3c59f3b0e8798cad90b927c1f5f078a
         </div>
     </section>
 
@@ -365,6 +373,7 @@
 
             if (isLoggedIn === 'true' && username) {
                 const displayName = username.split('@')[0];
+<<<<<<< HEAD
                 authButton.innerHTML = `
                     <span class="material-symbols-outlined">person</span>
                     ${displayName}
@@ -375,6 +384,25 @@
                         logout();
                     }
                 };
+=======
+
+                // Find the login button container
+                const headerContainer = document.querySelector('.header-container > div:last-child');
+                if (headerContainer) {
+                    headerContainer.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <span style="font-family: var(--font-display); font-weight: 600; color: var(--color-vintage-brown);">
+                                <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 20px; margin-right: 4px;">person</span>
+                                ${displayName}
+                            </span>
+                            <button onclick="logout()" class="btn btn-secondary">
+                                <span class="material-symbols-outlined">logout</span>
+                                Đăng xuất
+                            </button>
+                        </div>
+                    `;
+                }
+>>>>>>> c974e7caf3c59f3b0e8798cad90b927c1f5f078a
             }
         }
 

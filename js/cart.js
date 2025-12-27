@@ -28,6 +28,14 @@ function loadCart() {
             </div>
         `;
         summaryTotal.textContent = '0đ';
+
+        // Disable checkout button when cart is empty
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        if (checkoutBtn) {
+            checkoutBtn.style.pointerEvents = 'none';
+            checkoutBtn.style.opacity = '0.5';
+            checkoutBtn.style.cursor = 'not-allowed';
+        }
         return;
     }
 
@@ -71,6 +79,14 @@ function loadCart() {
 
     // Update total
     summaryTotal.textContent = totalPrice.toLocaleString('vi-VN') + 'đ';
+
+    // Enable checkout button when cart has items
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+        checkoutBtn.style.pointerEvents = 'auto';
+        checkoutBtn.style.opacity = '1';
+        checkoutBtn.style.cursor = 'pointer';
+    }
 }
 
 // Remove item from cart
