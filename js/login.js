@@ -5,19 +5,19 @@
 // Dữ liệu banner slider
 const bannerSlides = [
     {
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDV-ff7XfJCnsqO9Z_NMf0VLUpr9c008zeLHeGmILperILaAAUTZDc-9aGjTBBfmJoQ788Ivapsza1uOMtAxTF_6m29k39jeqk9bDdJ9r8BQCHB-b7waJULJ0xznJt7D6RScvI9YJvg3FFgm6YkYMB-7yq1CjjNcA_0lb_O7Uj4mQWRiPqlrrVy8FxrmWfK5NHdmF9J3kxg0r3MhJolhDE5mQ6ch5BJ-HJmIrbp2J0r2YavyYDReLvSWUvKSVdjrp5SRZmv_bd8X7g',
+        image: '../images/banner.jpg',
         icon: 'auto_awesome',
         title: 'Khám phá phong cách của riêng bạn',
         text: 'Bộ sưu tập đồ Secondhand được tuyển chọn kỹ lượng, mang đến hơi thở cổ điển nhưng đầy hiện đại cho tủ đồ của bạn.'
     },
     {
-        image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80',
+        image: '../images/banner.jpg',
         icon: 'favorite',
         title: 'Thời trang bền vững',
         text: 'Góp phần bảo vệ môi trường với những lựa chọn thời trang secondhand chất lượng cao, giảm thiểu rác thải dệt may.'
     },
     {
-        image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80',
+        image: '../images/banner.jpg',
         icon: 'shopping_bag',
         title: 'Giá cả phải chăng',
         text: 'Sở hữu những món đồ vintage độc đáo với mức giá hợp lý, tiết kiệm nhưng vẫn thể hiện cá tính riêng.'
@@ -129,6 +129,9 @@ function initBannerCarousel() {
     if (bannerCard) {
         bannerCard.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
+
+    // Hiển thị slide đầu tiên ngay lập tức
+    updateSlide(0);
 
     // Bắt đầu tự động chạy
     startAutoPlay();

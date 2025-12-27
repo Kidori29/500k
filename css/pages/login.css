@@ -278,7 +278,6 @@
 .banner-image {
     position: absolute;
     inset: 0;
-    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDV-ff7XfJCnsqO9Z_NMf0VLUpr9c008zeLHeGmILperILaAAUTZDc-9aGjTBBfmJoQ788Ivapsza1uOMtAxTF_6m29k39jeqk9bDdJ9r8BQCHB-b7waJULJ0xznJt7D6RScvI9YJvg3FFgm6YkYMB-7yq1CjjNcA_0lb_O7Uj4mQWRiPqlrrVy8FxrmWfK5NHdmF9J3kxg0r3MhJolhDE5mQ6ch5BJ-HJmIrbp2J0r2YavyYDReLvSWUvKSVdjrp5SRZmv_bd8X7g');
     background-size: cover;
     background-position: center;
     transition: transform 4s ease;
