@@ -9,7 +9,7 @@
 // Dữ liệu banner slider
 const bannerSlides = [
     {
-        image: '../images/banner.jpg',
+        image: '../images/banner-1.jpg',
         icon: 'auto_awesome',
         title: 'Khám phá phong cách của riêng bạn',
         text: 'Bộ sưu tập đồ Secondhand được tuyển chọn kỹ lượng, mang đến hơi thở cổ điển nhưng đầy hiện đại cho tủ đồ của bạn.'
