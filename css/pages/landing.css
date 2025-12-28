@@ -188,19 +188,7 @@
     right: -4px;
 }
 
-/* 2. Cấu trúc Logo + Chữ */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: var(--color-primary);
-    /* Màu chữ chính */
-    font-size: 1.2rem;
-    font-weight: 700;
-}
 
-/* 3. Khung tròn chứa ảnh */
 .logo-icon {
     width: 50px;
     /* Kích thước vừa vặn */

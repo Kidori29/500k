@@ -1,16 +1,10 @@
-// ==========================================
-// AUTH GUARD - Bảo vệ các trang yêu cầu đăng nhập
-// ==========================================
-// File này bảo vệ các trang yêu cầu đăng nhập
+// Bảo vệ các trang yêu cầu đăng nhập
 // Tự động chuyển hướng về trang login nếu chưa đăng nhập
 
 (function () {
     'use strict';
 
-    /**
-     * Kiểm tra trạng thái đăng nhập
-     * @returns {boolean} - true nếu đã đăng nhập, false nếu chưa
-     */
+    // Kiểm tra trạng thái đăng nhập
     function checkAuth() {
         const isLoggedIn = sessionStorage.getItem('isLoggedIn');
         const username = sessionStorage.getItem('username');
@@ -35,10 +29,7 @@
         return true;
     }
 
-    /**
-     * Hiển thị thông báo yêu cầu đăng nhập
-     * Tạo modal overlay với thông báo và tự động chuyển hướng
-     */
+    // Hiển thị thông báo yêu cầu đăng nhập
     function showAuthRequired() {
         // Tạo overlay
         const overlay = document.createElement('div');
@@ -145,15 +136,13 @@
         }
     }
 
-    // ==========================================
-    // KHỞI TẠO KHI TẢI TRANG
-    // ==========================================
-    // Kiểm tra authentication khi DOM đã load
+    // Khởi tạo khi tải trang
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () {
             checkAuth();
         });
-    } else {
+    }
+    else {
         checkAuth();
     }
 

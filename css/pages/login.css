@@ -155,9 +155,9 @@
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center;
-    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), 
-                background-image 0.5s ease-in-out;
+    background-position: center 0%;
+    transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1),
+        background-image 0.5s ease-in-out;
     will-change: transform, background-image;
     backface-visibility: hidden;
     transform: translateZ(0);
@@ -194,8 +194,8 @@
     padding: var(--spacing-2xl);
     max-width: 600px;
     box-shadow: var(--shadow-soft);
-    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity, transform;
     backface-visibility: hidden;
     perspective: 1000px;
@@ -232,38 +232,6 @@
     font-weight: 500;
     line-height: 1.6;
 }
-
-.banner-dots {
-    display: flex;
-    gap: 12px;
-    margin-top: var(--spacing-xl);
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    
-    /* THÊM MỚI - các dòng này: */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-.dot.inactive:hover {
-    transform: scale(1.2) translateZ(0);
-    background: rgba(240, 140, 160, 0.5);
-}
-
-.dot.active {
-    width: 64px;
-    border-radius: var(--radius-full);
-    transform: scale(1) translateZ(0);
-}
-
-
 
 /* ===== RESPONSIVE (ĐÁP ỨNG) ===== */
 @media (min-width: 768px) {

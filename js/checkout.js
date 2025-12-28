@@ -1,53 +1,44 @@
-// ==========================================
-// QUẢN LÝ THANH TOÁN - Checkout Management
-// ==========================================
-// File này xử lý:
-// - Hiển thị thông tin đơn hàng từ giỏ hàng
-// - Quản lý header authentication
-// - Xử lý hoàn tất đơn hàng
+// Quản lý trang thanh toán
+// Hiển thị đơn hàng, xử lý thanh toán và tạo hóa đơn
 
-
-
-
-
-/**
- * Tải sản phẩm trong giỏ hàng để hiển thị trong trang thanh toán
- * Tính tổng tiền và hiển thị danh sách sản phẩm
- */
+// Tải sản phẩm trong giỏ hàng
 function loadCheckoutCart() {
     const container = document.getElementById('checkoutItemsContainer');
     const subtotalElement = document.getElementById('checkoutSubtotal');
     const totalElement = document.getElementById('checkoutTotal');
     const summaryTitle = document.getElementById('checkoutSummaryTitle');
 
-    // Lấy giỏ hàng từ localStorage
+    // Lấy giỏ hàng
     let cart = [];
     try {
         cart = JSON.parse(localStorage.getItem('cart')) || [];
-    } catch (e) {
+    }
+    catch (e) {
         cart = [];
     }
 
     // Chuyển hướng nếu giỏ hàng trống
     if (cart.length === 0) {
-
-        if (summaryTitle) summaryTitle.textContent = 'Đơn Hàng (0 sản phẩm)';
-        if (container) container.innerHTML = '<p style="text-align:center; padding: 20px;">Giỏ hàng trống</p>';
+        if (summaryTitle)
+            summaryTitle.textContent = 'Đơn Hàng (0 sản phẩm)';
+        if (container)
+            container.innerHTML = '<p style="text-align:center; padding: 20px;">Giỏ hàng trống</p>';
         return;
     }
 
-    // Cập nhật tiêu đề tóm tắt
+    // Cập nhật tiêu đề
     let totalItems = 0;
     cart.forEach(item => totalItems += (parseInt(item.quantity) || 1));
-    if (summaryTitle) summaryTitle.textContent = `Đơn Hàng (${totalItems} sản phẩm)`;
+    if (summaryTitle)
+        summaryTitle.textContent = `Đơn Hàng (${totalItems} sản phẩm)`;
 
     // Tính tổng tiền và hiển thị sản phẩm
     let totalPrice = 0;
-    if (container) container.innerHTML = '';
+    if (container)
+        container.innerHTML = '';
 
     cart.forEach(item => {
         const quantity = parseInt(item.quantity) || 1;
-        // Phân tích giá
         const priceStr = item.price.replace(/[đ,.]/g, '');
         const price = parseInt(priceStr) || 0;
         totalPrice += price * quantity;
@@ -64,19 +55,19 @@ function loadCheckoutCart() {
                 </div>
             </div>
         `;
-        if (container) container.innerHTML += html;
+        if (container)
+            container.innerHTML += html;
     });
 
     // Cập nhật tổng tiền
     const formattedTotal = totalPrice.toLocaleString('vi-VN') + 'đ';
-    if (subtotalElement) subtotalElement.textContent = formattedTotal;
-    if (totalElement) totalElement.textContent = formattedTotal;
+    if (subtotalElement)
+        subtotalElement.textContent = formattedTotal;
+    if (totalElement)
+        totalElement.textContent = formattedTotal;
 }
 
-/**
- * Hiển thị hóa đơn sau khi thanh toán thành công
- * @param {Object} orderData - Thông tin đơn hàng
- */
+// Hiển thị hóa đơn sau khi thanh toán
 function showBill(orderData) {
     // Tính tổng tiền
     let totalPrice = 0;
@@ -94,11 +85,11 @@ function showBill(orderData) {
     const districtName = districtSelect?.options[districtSelect.selectedIndex]?.text || orderData.district;
 
     // Tên phương thức thanh toán
-    const paymentMethodName = orderData.paymentMethod === 'cod' 
-        ? 'Thanh toán khi nhận hàng (COD)' 
+    const paymentMethodName = orderData.paymentMethod === 'cod'
+        ? 'Thanh toán khi nhận hàng (COD)'
         : 'Chuyển khoản ngân hàng';
 
-    // Tạo HTML cho hóa đơn
+    // Tạo HTML hóa đơn
     const billHTML = `
         <div class="bill-modal-overlay" id="billModal">
             <div class="bill-modal">
@@ -139,11 +130,11 @@ function showBill(orderData) {
                         <h3 class="bill-section-title">Sản phẩm</h3>
                         <div class="bill-items">
                             ${orderData.cart.map(item => {
-                                const quantity = parseInt(item.quantity) || 1;
-                                const priceStr = item.price.replace(/[đ,.]/g, '');
-                                const price = parseInt(priceStr) || 0;
-                                const itemTotal = price * quantity;
-                                return `
+        const quantity = parseInt(item.quantity) || 1;
+        const priceStr = item.price.replace(/[đ,.]/g, '');
+        const price = parseInt(priceStr) || 0;
+        const itemTotal = price * quantity;
+        return `
                                     <div class="bill-item">
                                         <div class="bill-item-info">
                                             <div class="bill-item-name">${item.name}</div>
@@ -152,7 +143,7 @@ function showBill(orderData) {
                                         <div class="bill-item-total">${itemTotal.toLocaleString('vi-VN')}đ</div>
                                     </div>
                                 `;
-                            }).join('')}
+    }).join('')}
                         </div>
                     </div>
 
@@ -188,10 +179,6 @@ function showBill(orderData) {
                 <div class="bill-footer">
                     <div class="bill-thank-you">Cảm ơn bạn đã mua sắm tại Phuong 2Hand!</div>
                     <div class="bill-actions">
-                        <button class="btn btn-secondary" onclick="printBill()">
-                            <span class="material-symbols-outlined">print</span>
-                            In hóa đơn
-                        </button>
                         <button class="btn btn-primary" onclick="closeBill()">
                             <span class="material-symbols-outlined">check_circle</span>
                             Hoàn tất
@@ -205,84 +192,35 @@ function showBill(orderData) {
     // Thêm hóa đơn vào body
     document.body.insertAdjacentHTML('beforeend', billHTML);
 
-    // Hiển thị modal với animation
+    // Hiển thị modal
     setTimeout(() => {
         const modal = document.getElementById('billModal');
-        if (modal) {
+        if (modal)
             modal.classList.add('show');
-        }
     }, 10);
 }
 
-/**
- * Đóng hóa đơn và chuyển về trang chủ
- */
+// Đóng hóa đơn
 function closeBill() {
     const modal = document.getElementById('billModal');
     if (modal) {
         modal.classList.remove('show');
         setTimeout(() => {
             modal.remove();
-            // Xóa giỏ hàng và chuyển về trang chủ
             localStorage.removeItem('cart');
             window.location.href = '../index.html';
         }, 300);
     }
 }
 
-/**
- * In hóa đơn
- */
-function printBill() {
-    const modal = document.getElementById('billModal');
-    if (modal) {
-        const billContent = modal.querySelector('.bill-modal').cloneNode(true);
-        
-        // Ẩn các nút action khi in
-        const actions = billContent.querySelector('.bill-actions');
-        if (actions) actions.style.display = 'none';
-        
-        // Tạo cửa sổ in
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Hóa đơn - Phuong 2Hand</title>
-                <style>
-                    * { margin: 0; padding: 0; box-sizing: border-box; }
-                    body { font-family: 'Nunito', sans-serif; padding: 20px; }
-                    .bill-modal { max-width: 800px; margin: 0 auto; background: white; }
-                    ${document.querySelector('style')?.innerHTML || ''}
-                </style>
-            </head>
-            <body>
-                ${billContent.outerHTML}
-            </body>
-            </html>
-        `);
-        printWindow.document.close();
-        printWindow.focus();
-        setTimeout(() => {
-            printWindow.print();
-            printWindow.close();
-        }, 250);
-    }
-}
-
-// ==========================================
-// KHỞI TẠO KHI TẢI TRANG
-// ==========================================
+// Khởi tạo khi tải trang
 document.addEventListener('DOMContentLoaded', function () {
-    // Cập nhật header và tải giỏ hàng
-    // Header authentication được xử lý bởi auth-header.js
     loadCheckoutCart();
 
-    // Xử lý hoàn tất đơn hàng
     const completeOrderBtn = document.getElementById('completeOrderBtn');
     if (completeOrderBtn) {
         completeOrderBtn.addEventListener('click', function () {
-            // Lấy form data để validate
+            // Lấy form data
             const email = document.getElementById('email')?.value.trim();
             const fullname = document.getElementById('fullname')?.value.trim();
             const phone = document.getElementById('phone')?.value.trim();
@@ -296,25 +234,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Validate email format
+            // Validate email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Email không hợp lệ!');
                 return;
             }
 
-            // Validate phone (chỉ số, 10-11 chữ số)
+            // Validate phone
             const phoneRegex = /^[0-9]{10,11}$/;
             if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
                 alert('Số điện thoại không hợp lệ!');
                 return;
             }
 
-            // Kiểm tra giỏ hàng không trống
+            // Kiểm tra giỏ hàng
             let cart = [];
             try {
                 cart = JSON.parse(localStorage.getItem('cart')) || [];
-            } catch (e) {
+            }
+            catch (e) {
                 cart = [];
             }
 
