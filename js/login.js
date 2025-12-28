@@ -15,13 +15,13 @@ const bannerSlides = [
         text: 'Bộ sưu tập đồ Secondhand được tuyển chọn kỹ lượng, mang đến hơi thở cổ điển nhưng đầy hiện đại cho tủ đồ của bạn.'
     },
     {
-        image: '../images/banner-2.jpg',
+        image: '../images/banner-1.jpg',
         icon: 'favorite',
         title: 'Thời trang bền vững',
         text: 'Góp phần bảo vệ môi trường với những lựa chọn thời trang secondhand chất lượng cao, giảm thiểu rác thải dệt may.'
     },
     {
-        image: '../images/banner-3.jpg',
+        image: '../images/banner-1.jpg',
         icon: 'shopping_bag',
         title: 'Giá cả phải chăng',
         text: 'Sở hữu những món đồ vintage độc đáo với mức giá hợp lý, tiết kiệm nhưng vẫn thể hiện cá tính riêng.'
