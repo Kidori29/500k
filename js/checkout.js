@@ -73,6 +73,203 @@ function loadCheckoutCart() {
     if (totalElement) totalElement.textContent = formattedTotal;
 }
 
+/**
+ * Hiển thị hóa đơn sau khi thanh toán thành công
+ * @param {Object} orderData - Thông tin đơn hàng
+ */
+function showBill(orderData) {
+    // Tính tổng tiền
+    let totalPrice = 0;
+    orderData.cart.forEach(item => {
+        const quantity = parseInt(item.quantity) || 1;
+        const priceStr = item.price.replace(/[đ,.]/g, '');
+        const price = parseInt(priceStr) || 0;
+        totalPrice += price * quantity;
+    });
+
+    // Lấy tên thành phố và quận
+    const citySelect = document.getElementById('city');
+    const districtSelect = document.getElementById('district');
+    const cityName = citySelect?.options[citySelect.selectedIndex]?.text || orderData.city;
+    const districtName = districtSelect?.options[districtSelect.selectedIndex]?.text || orderData.district;
+
+    // Tên phương thức thanh toán
+    const paymentMethodName = orderData.paymentMethod === 'cod' 
+        ? 'Thanh toán khi nhận hàng (COD)' 
+        : 'Chuyển khoản ngân hàng';
+
+    // Tạo HTML cho hóa đơn
+    const billHTML = `
+        <div class="bill-modal-overlay" id="billModal">
+            <div class="bill-modal">
+                <div class="bill-header">
+                    <div class="bill-logo-section">
+                        <img src="../images/logo.jpg" alt="Logo" class="bill-logo">
+                        <div class="bill-shop-name">PHUONG<span class="bill-shop-name-accent">.2HAND</span></div>
+                    </div>
+                    <div class="bill-order-info">
+                        <div class="bill-title">HÓA ĐƠN BÁN HÀNG</div>
+                        <div class="bill-date">Ngày: ${new Date().toLocaleDateString('vi-VN')}</div>
+                        <div class="bill-time">Giờ: ${new Date().toLocaleTimeString('vi-VN')}</div>
+                    </div>
+                </div>
+
+                <div class="bill-content">
+                    <div class="bill-section">
+                        <h3 class="bill-section-title">Thông tin khách hàng</h3>
+                        <div class="bill-info-row">
+                            <span class="bill-label">Họ tên:</span>
+                            <span class="bill-value">${orderData.fullname}</span>
+                        </div>
+                        <div class="bill-info-row">
+                            <span class="bill-label">Email:</span>
+                            <span class="bill-value">${orderData.email}</span>
+                        </div>
+                        <div class="bill-info-row">
+                            <span class="bill-label">SĐT:</span>
+                            <span class="bill-value">${orderData.phone}</span>
+                        </div>
+                        <div class="bill-info-row">
+                            <span class="bill-label">Địa chỉ:</span>
+                            <span class="bill-value">${orderData.address}, ${districtName}, ${cityName}</span>
+                        </div>
+                    </div>
+
+                    <div class="bill-section">
+                        <h3 class="bill-section-title">Sản phẩm</h3>
+                        <div class="bill-items">
+                            ${orderData.cart.map(item => {
+                                const quantity = parseInt(item.quantity) || 1;
+                                const priceStr = item.price.replace(/[đ,.]/g, '');
+                                const price = parseInt(priceStr) || 0;
+                                const itemTotal = price * quantity;
+                                return `
+                                    <div class="bill-item">
+                                        <div class="bill-item-info">
+                                            <div class="bill-item-name">${item.name}</div>
+                                            <div class="bill-item-meta">SL: ${quantity} × ${item.price}</div>
+                                        </div>
+                                        <div class="bill-item-total">${itemTotal.toLocaleString('vi-VN')}đ</div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+
+                    <div class="bill-section">
+                        <div class="bill-summary-row">
+                            <span class="bill-label">Tạm tính:</span>
+                            <span class="bill-value">${totalPrice.toLocaleString('vi-VN')}đ</span>
+                        </div>
+                        <div class="bill-summary-row">
+                            <span class="bill-label">Phí vận chuyển:</span>
+                            <span class="bill-value" style="color: var(--color-primary);">Miễn phí</span>
+                        </div>
+                        <div class="bill-summary-row bill-total">
+                            <span class="bill-label">Tổng cộng:</span>
+                            <span class="bill-value">${totalPrice.toLocaleString('vi-VN')}đ</span>
+                        </div>
+                    </div>
+
+                    <div class="bill-section">
+                        <div class="bill-info-row">
+                            <span class="bill-label">Phương thức thanh toán:</span>
+                            <span class="bill-value">${paymentMethodName}</span>
+                        </div>
+                        ${orderData.note ? `
+                            <div class="bill-info-row">
+                                <span class="bill-label">Ghi chú:</span>
+                                <span class="bill-value">${orderData.note}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                <div class="bill-footer">
+                    <div class="bill-thank-you">Cảm ơn bạn đã mua sắm tại Phuong 2Hand!</div>
+                    <div class="bill-actions">
+                        <button class="btn btn-secondary" onclick="printBill()">
+                            <span class="material-symbols-outlined">print</span>
+                            In hóa đơn
+                        </button>
+                        <button class="btn btn-primary" onclick="closeBill()">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Hoàn tất
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Thêm hóa đơn vào body
+    document.body.insertAdjacentHTML('beforeend', billHTML);
+
+    // Hiển thị modal với animation
+    setTimeout(() => {
+        const modal = document.getElementById('billModal');
+        if (modal) {
+            modal.classList.add('show');
+        }
+    }, 10);
+}
+
+/**
+ * Đóng hóa đơn và chuyển về trang chủ
+ */
+function closeBill() {
+    const modal = document.getElementById('billModal');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.remove();
+            // Xóa giỏ hàng và chuyển về trang chủ
+            localStorage.removeItem('cart');
+            window.location.href = '../index.html';
+        }, 300);
+    }
+}
+
+/**
+ * In hóa đơn
+ */
+function printBill() {
+    const modal = document.getElementById('billModal');
+    if (modal) {
+        const billContent = modal.querySelector('.bill-modal').cloneNode(true);
+        
+        // Ẩn các nút action khi in
+        const actions = billContent.querySelector('.bill-actions');
+        if (actions) actions.style.display = 'none';
+        
+        // Tạo cửa sổ in
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Hóa đơn - Phuong 2Hand</title>
+                <style>
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                    body { font-family: 'Nunito', sans-serif; padding: 20px; }
+                    .bill-modal { max-width: 800px; margin: 0 auto; background: white; }
+                    ${document.querySelector('style')?.innerHTML || ''}
+                </style>
+            </head>
+            <body>
+                ${billContent.outerHTML}
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        setTimeout(() => {
+            printWindow.print();
+            printWindow.close();
+        }, 250);
+    }
+}
+
 // ==========================================
 // KHỞI TẠO KHI TẢI TRANG
 // ==========================================
@@ -127,12 +324,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Hiển thị thông báo thành công
-            alert('Đã đặt hàng thành công! Cảm ơn bạn đã mua sắm tại Phuong 2Hand.');
+            // Lấy thông tin thanh toán
+            const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value || 'cod';
+            const note = document.getElementById('note')?.value.trim() || '';
 
-            // Xóa giỏ hàng và chuyển về trang chủ
-            localStorage.removeItem('cart');
-            window.location.href = '../index.html';
+            // Hiển thị hóa đơn
+            showBill({
+                email,
+                fullname,
+                phone,
+                address,
+                city,
+                district,
+                paymentMethod,
+                note,
+                cart
+            });
         });
     }
 });
